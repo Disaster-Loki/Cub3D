@@ -1,4 +1,4 @@
-#                                                  🌟 **Cub3D**
+# <div align="center"> 🌟 **Cub3D** </div>
 
 ![Cub3D Animation](https://media.giphy.com/media/2t9mjApy1CYY24HTWo/giphy.gif)
 
