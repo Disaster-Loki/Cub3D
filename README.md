@@ -56,6 +56,7 @@
    ```bash
    ./cub3D path/to/map.cub
    ```
+---
 
 ## 🌐 **Learn More**
 Visit the [Wolfenstein 3D](http://users.atw.hu/wolf3d/) page to explore the game that inspired this project.
