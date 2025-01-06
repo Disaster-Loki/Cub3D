@@ -14,26 +14,10 @@
 
 ---
 
-## 📽️ **Demo**
+## 🎥 **Demo**
 
-```c
-#include "cub3d.h"
+![Cub3D Demo](https://media.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif)
 
-int main(void) {
-    t_game game;
-
-    if (!init_game(&game)) {
-        printf("Error: Failed to initialize the game.\n");
-        return (1);
-    }
-    while (1) {
-        render_game(&game);
-    }
-    cleanup_game(&game);
-
-    return (0);
-}
-```
 
 > **Preview:** Navigate through a maze, observe realistic wall textures, and experience smooth gameplay.
 
