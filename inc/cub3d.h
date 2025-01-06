@@ -26,7 +26,7 @@ typedef struct s_point
 {
 	int	x;
 	int	y;
-};
+}	t_point;
 
 typedef struct s_img
 {
@@ -41,9 +41,10 @@ typedef struct s_img
 typedef struct s_game
 {
 	t_img	img;
+	t_point	pos;
 	void	*mlx;
 	void	*win;
-}
+}	t_game;
 
 void	error(char *msg);
 char	**get_file(char *str);
