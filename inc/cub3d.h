@@ -22,6 +22,29 @@
 
 # define ESC 65307
 
+typedef struct s_point
+{
+	int	x;
+	int	y;
+};
+
+typedef struct s_img
+{
+	void	*no;
+	void	*so;
+	void	*we;
+	void	*ea;
+	int		wid;
+	int		hei;
+}			t_img;
+
+typedef struct s_game
+{
+	t_img	img;
+	void	*mlx;
+	void	*win;
+}
+
 void	error(char *msg);
 char	**get_file(char *str);
 int		open_file(char *file);
