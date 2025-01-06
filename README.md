@@ -57,17 +57,11 @@
    ./cub3D path/to/map.cub
    ```
 
----
-
 ## 🌐 **Learn More**
 Visit the [Wolfenstein 3D](http://users.atw.hu/wolf3d/) page to explore the game that inspired this project.
 
----
-
 ## ✨ **Acknowledgments**
 Thanks to **42 Network** and the amazing open-source community for the resources and support!
-
----
 
 ## 📜 **License**
 This project is licensed under the MIT License. See the LICENSE file for details.
