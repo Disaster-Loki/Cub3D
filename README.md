@@ -2,124 +2,87 @@
 
 ## 🕹️ **My First RayCaster with miniLibX**
 
-![cub3D Animation](https://media.giphy.com/media/3o6gDWzmAzrpi5DQU8/giphy.gif)
+![Cub3D Animation](https://media.giphy.com/media/xTiTnLqPzJkcVWX1nq/giphy.gif)
 
 ---
 
-## 📜 **Project Description**
+## 🚀 **Project Overview**
+**Cub3D** is my first experience building a RayCaster using **miniLibX**. This project takes inspiration from the legendary **Wolfenstein 3D**, the first-ever FPS game. 
 
-Inspired by the legendary **Wolfenstein 3D**, the first-ever FPS game created by the iconic duo **John Carmack** and **John Romero**, Cub3D is an exciting journey into the world of **Ray-Casting**.
-
-### 🌌 **Objective**
-Your mission is to develop a **3D dynamic view** inside a maze. Using the principles of **Ray-Casting**, you'll create a graphical representation of the maze from a **first-person perspective**, navigating and interacting with the environment.
-
----
-
-## 🚀 **Features**
-
-### 🛠️ **Mandatory Part**
-- **Realistic 3D Representation**: Render a maze with walls and textures using **Ray-Casting**.
-- **MiniLibX Integration**: Utilize the power of **MiniLibX** for graphics.
-- **Dynamic Movements**:
-  - `W`, `A`, `S`, `D`: Move the player in the maze.
-  - Arrow keys: Rotate the player's view.
-  - `ESC`: Exit the program cleanly.
-  - Red Window Button: Close the program without crashes.
-- **Textures and Colors**:
-  - Different wall textures depending on direction (**North**, **South**, **East**, **West**).
-  - Customizable **floor** and **ceiling** colors.
-- **Scene Description File**: Parse a `.cub` file to load the maze configuration, including:
-  - **Textures**
-  - **Colors**
-  - **Maze Map**
-
-### 🎨 **Bonus Part**
-- **Enhanced Graphics**: Add lighting effects, shadows, and animations for a more immersive experience.
-- **Advanced Controls**: Diagonal movements, crouch, and sprint.
-- **Multiplayer Mode**: Explore the maze with friends.
-- **Minimap**: Implement a dynamic **2D minimap** to assist navigation.
+### 🎯 **Goals**
+- Explore ray-casting techniques.
+- Develop a dynamic, first-person perspective inside a maze.
+- Achieve smooth graphics rendering and player movement.
 
 ---
 
-## ⚙️ **Getting Started**
+## 📽️ **Demo**
 
-### 📦 **Prerequisites**
-- **Linux/MacOS**
-- **gcc** Compiler
-- **Makefile**
-- **MiniLibX** Library
+```c
+#include "cub3d.h"
 
-### 💻 **Installation**
-```bash
-# Clone the repository
-git clone https://github.com/Disaster-Loki/cub3D.git
+int main(void) {
+    t_game game;
 
-# Navigate to the project directory
-cd cub3D
+    if (!init_game(&game)) {
+        printf("Error: Failed to initialize the game.\n");
+        return (1);
+    }
+    render_game(&game);
+    cleanup_game(&game);
 
-# Build the project
-make
+    return (0);
+}
 ```
 
-### 🗺️ **Running the Project**
-```bash
-./cub3D path/to/your_map.cub
-```
+> **Preview:** Navigate through a maze, observe realistic wall textures, and experience smooth gameplay.
 
 ---
 
-## 📄 **Scene Description File (.cub)**
-
-### 🎮 **Example Configuration**
-```txt
-NO ./textures/north_texture.xpm
-SO ./textures/south_texture.xpm
-WE ./textures/west_texture.xpm
-EA ./textures/east_texture.xpm
-F 220,100,0
-C 225,30,0
-111111111111111111111
-100000000011000000001
-101100000111000000001
-1100N1000000000000001
-111111111011000001111
-100000000011000001111
-111101111111110111111
-111101111111110111111
-```
-
-### ❗ **Error Handling**
-- Invalid characters in the map.
-- Unclosed walls.
-- Missing textures or colors.
+## 📜 **Features**
+- 🎮 **Keyboard controls:**
+  - Arrow keys: Look left/right.
+  - W, A, S, D: Move through the maze.
+  - ESC: Exit the game.
+- 🎨 **Customizable colors** for floor and ceiling.
+- 🖼️ **Dynamic wall textures** based on the wall orientation (N/S/E/W).
+- 🗺️ Parses `.cub` map files with customizable layouts.
+- 🖥️ **MiniLibX Integration:** Lightweight graphics library for C programming.
 
 ---
 
-## 🎥 **Demo**
-
-![Cub3D Demo](https://media.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif)
+## 🤝 **Collaborators**
+- [Disaster-Loki](https://github.com/Disaster-Loki)
+- [ptchipoc](https://github.com/ptchipoc)
 
 ---
 
-## 🧑‍💻 **Contributors**
+## ⚙️ **How to Run**
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Disaster-Loki/cub3D.git
+   cd cub3D
+   ```
+2. Compile the project:
+   ```bash
+   make
+   ```
+3. Run the executable with a `.cub` map:
+   ```bash
+   ./cub3D path/to/map.cub
+   ```
 
-- [**Disaster-Loki**](https://github.com/Disaster-Loki)  
-- [**ptchipoc**](https://github.com/ptchipoc)
+---
+
+## 🌐 **Learn More**
+Visit the [Wolfenstein 3D](http://users.atw.hu/wolf3d/) page to explore the game that inspired this project.
+
+---
+
+## ✨ **Acknowledgments**
+Thanks to **42 Network** and the amazing open-source community for the resources and support!
 
 ---
 
 ## 📜 **License**
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-## 🌟 **Acknowledgments**
-
-- **42 School** for their challenging and creative projects.
-- **John Carmack** and **John Romero** for inspiring generations of developers with **Wolfenstein 3D**.
-- The open-source community for their invaluable resources.
-
----
-
-> **“Relive the history and create your own!”**
-
+This project is licensed under the MIT License. See the LICENSE file for details.
