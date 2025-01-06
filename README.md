@@ -1,4 +1,4 @@
-# <div align="center"> 🌟 **Cub3D** </div>
+# <div align="center"> 🌟 **Cub3D** - My first RayCaster with miniLibX</div>
 
 ![Cub3D Animation](https://media.giphy.com/media/2t9mjApy1CYY24HTWo/giphy.gif)
 
