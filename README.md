@@ -1,8 +1,6 @@
 # 🌟 **Cub3D**
 
-## 🕹️ **My First RayCaster with miniLibX**
-
-![Cub3D Animation](https://media.giphy.com/media/xTiTnLqPzJkcVWX1nq/giphy.gif)
+![Cub3D Animation](https://media.giphy.com/media/2t9mjApy1CYY24HTWo/giphy.gif)
 
 ---
 
@@ -28,7 +26,9 @@ int main(void) {
         printf("Error: Failed to initialize the game.\n");
         return (1);
     }
-    render_game(&game);
+    while (1) {
+        render_game(&game);
+    }
     cleanup_game(&game);
 
     return (0);
@@ -86,3 +86,4 @@ Thanks to **42 Network** and the amazing open-source community for the resources
 
 ## 📜 **License**
 This project is licensed under the MIT License. See the LICENSE file for details.
+
