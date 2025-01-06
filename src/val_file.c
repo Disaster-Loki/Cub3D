@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   val_file.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sde-carv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/20 09:47:53 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/08/20 09:48:06 by sde-carv         ###   ########.fr       */
+/*   Created: 2025/01/06 13:13:41 by sde-carv          #+#    #+#             */
+/*   Updated: 2025/01/06 13:13:43 by sde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "../inc/cub3d.h"
 
-# include <fcntl.h>
-# include <stdio.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include "../libft/inc/libft.h"
-# include "../minilibx-linux/mlx.h"
+int	open_file(char *file)
+{
+	int		fd;
+	int		len;
+	char	*ext;
 
-# define ESC 65307
-
-void	error(char *msg);
-char	**get_file(char *str);
-int		open_file(char *file);
-char	*read_map_content(int fd);
-void	error_str(char *msg, char *str);
-
-#endif
+	ext = ".cub";
+	len = (int) ft_strlen(file);
+	if (len < 4 || ft_strncmp(file + len - 4, ext, 4) != 0)
+		error("Error - Invalid extension !!\n");
+	fd = open(file, O_RDONLY);
+	if (fd == -1)
+		error("Error - Openning the file !!\n");
+	return (fd);
+}

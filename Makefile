@@ -26,7 +26,10 @@ YELLOW		= \033[33m
 ORANGE		= \033[38;5;208m
 GREEN		= \033[32m
 
-S_FILES		= 											
+S_FILES		= ./src/main.c    		\
+			  ./src/val_file.c  	\
+			  ./src/get_file.c  	\
+			  ./src/error.c  		\
 
 S_OBJ		= $(S_FILES:.c=.o)
 
@@ -36,17 +39,20 @@ $(NAME): $(S_OBJ)
 		 $(MAKE) -C $(L_DIR)
 		 $(MAKE) -C $(M_DIR)
 		 $(CC) $(CFLAGS) -o $(NAME) $(S_OBJ) $(LIBFT) $(M_libx)
+		 clear
 		 @echo "$(GREEN) MANDATORY - COMPILATION COMPLETE$(RESET)"	
 
 clean:
 		@$(MAKE) clean -C $(L_DIR)
 		@$(MAKE) clean -C $(M_DIR)
 		rm -f $(S_OBJ)
+		clear
 		@echo "$(ORANGE) CLEANING THE OBJECTS$(RESET)"
 
 fclean: clean
 		@$(MAKE) fclean -C $(L_DIR)
 		rm -f $(NAME)
+		clear
 		@echo "$(RED) CLEARING ALL FILES$(RESET)"
 
 re: fclean all

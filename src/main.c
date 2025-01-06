@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sde-carv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/20 09:47:53 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/08/20 09:48:06 by sde-carv         ###   ########.fr       */
+/*   Created: 2025/01/06 13:15:49 by sde-carv          #+#    #+#             */
+/*   Updated: 2025/01/06 13:15:53 by sde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "../inc/cub3d.h"
 
-# include <fcntl.h>
-# include <stdio.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include "../libft/inc/libft.h"
-# include "../minilibx-linux/mlx.h"
+void	print_matrix(char **mt)
+{
+	while (*mt)
+		printf("%s\n", *(mt++));
+}
 
-# define ESC 65307
-
-void	error(char *msg);
-char	**get_file(char *str);
-int		open_file(char *file);
-char	*read_map_content(int fd);
-void	error_str(char *msg, char *str);
-
-#endif
+int	main(int av, char **args)
+{
+	(void)av;
+	print_matrix(get_file(args[1]));
+	return (0);
+}
