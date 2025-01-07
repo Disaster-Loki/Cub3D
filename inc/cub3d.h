@@ -63,6 +63,7 @@ char	**get_file(char *str);
 void	free_max(char **max);
 int		matrix_len(char **max);
 int		max_strlen(char **mtx);
+void	val_img_path(t_game *game, t_img *img);
 
 // Val_file
 int		open_file(char *file);

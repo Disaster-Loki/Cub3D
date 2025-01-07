@@ -37,7 +37,7 @@ int	max_strlen(char **mtx)
 	int	i;
 	int	max;
 
-	i = 0;
+	i = -1;
 	max = 0;
 	while (mtx[++i])
 	{
@@ -46,3 +46,13 @@ int	max_strlen(char **mtx)
 	}
 	return (max);
 }
+
+void	val_img_path(t_game *game, t_img *img)
+{
+	if (!img->no || !img->so || !img->we || !img->ea)
+	{
+		error("Error - Error loading the image !!\n");
+		close_game(game);
+	}
+}
+
