@@ -26,10 +26,13 @@ YELLOW		= \033[33m
 ORANGE		= \033[38;5;208m
 GREEN		= \033[32m
 
-S_FILES		= ./src/main.c    		\
-			  ./src/val_file.c  	\
-			  ./src/get_file.c  	\
-			  ./src/error.c  		\
+S_FILES		= ./src/main.c    			\
+			  ./src/close.c  			\
+			  ./src/error.c  			\
+			  ./src/utils.c  			\
+			  ./src/get_file.c  		\
+			  ./src/val_file.c  		\
+			  ./src/win_init.c  		\
 
 S_OBJ		= $(S_FILES:.c=.o)
 

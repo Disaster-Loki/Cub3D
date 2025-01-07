@@ -34,8 +34,6 @@ typedef struct s_img
 	void	*so;
 	void	*we;
 	void	*ea;
-	int		wid;
-	int		hei;
 }			t_img;
 
 typedef struct s_game
@@ -44,12 +42,38 @@ typedef struct s_game
 	t_point	pos;
 	void	*mlx;
 	void	*win;
+	char	*name;
+	char	**map;
 }	t_game;
 
+// Close
+int		win_close(t_game *game);
+int		close_game(t_game *game);
+void	close_img(void *mlx, t_img *img);
+
+// Error
 void	error(char *msg);
-char	**get_file(char *str);
-int		open_file(char *file);
-char	*read_map_content(int fd);
 void	error_str(char *msg, char *str);
+
+// Get_file
+char	*read_map_content(int fd);
+char	**get_file(char *str);
+
+// Utils
+void	free_max(char **max);
+int		matrix_len(char **max);
+int		max_strlen(char **mtx);
+
+// Val_file
+int		open_file(char *file);
+
+// Win_init
+void	init_vars(t_game *g, char **args);
+void	get_img(t_game *g, t_img *img, int x, int y);
+int		keypress(int key, t_game *game);
+void	win_init(char **args);
+
+// Main
+void	print_matrix(char **mt);
 
 #endif
