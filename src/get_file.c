@@ -12,14 +12,15 @@
 
 #include "../inc/cub3d.h"
 
-char	*read_map_content(int fd)
+char	*read_file(int fd)
 {
 	int		size;
 	int		offset;
 	char	*content;
 
+	size = 0;
 	offset = 0;
-	content = malloc(sizeof(char) * 7000);
+	content = malloc(sizeof(char) * 70000);
 	if (!content)
 		error("Error - Memory allocation failed !!\n");
 	size = read(fd, content, 1024);
@@ -37,13 +38,13 @@ char	*read_map_content(int fd)
 char	**get_file(char *str)
 {
 	int		fd;
-	char	**map;
+	char	**max;
 	char	*content;
 
 	fd = open_file(str);
-	content = read_map_content(fd);
+	content = read_file(fd);
 	close(fd);
-	map = ft_split(content, '\n');
+	max = ft_split(content, '\n');
 	free(content);
-	return (map);
+	return (max);
 }

@@ -33,6 +33,7 @@ S_FILES		= ./src/main.c    			\
 			  ./src/get_file.c  		\
 			  ./src/val_file.c  		\
 			  ./src/win_init.c  		\
+			  ./src/parsing.c  			\
 
 S_OBJ		= $(S_FILES:.c=.o)
 

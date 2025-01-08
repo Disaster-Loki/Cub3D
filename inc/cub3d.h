@@ -36,10 +36,22 @@ typedef struct s_img
 	void	*ea;
 }			t_img;
 
+typedef struct s_sett
+{
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
+	char	**map;
+	char	*c_roof;
+	char	*c_floor;
+}	t_sett;
+
 typedef struct s_game
 {
 	t_img	img;
 	t_point	pos;
+	t_sett	*sett;
 	void	*mlx;
 	void	*win;
 	char	*name;
@@ -56,7 +68,7 @@ void	error(char *msg);
 void	error_str(char *msg, char *str);
 
 // Get_file
-char	*read_map_content(int fd);
+char	*read_file(int fd);
 char	**get_file(char *str);
 
 // Utils
@@ -76,5 +88,8 @@ void	win_init(char **args);
 
 // Main
 void	print_matrix(char **mt);
+
+// Parsing
+t_sett	parsing(char *str);
 
 #endif

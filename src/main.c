@@ -22,8 +22,7 @@ int	main(int av, char **args)
 {
 	if (av == 1)
 		return (1);
+	parsing(args[1]);
 	win_init(args);
-	ft_putstr_fd("\n", 1);
-	print_matrix(get_file(args[1]));
 	return (0);
 }

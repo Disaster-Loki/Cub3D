@@ -51,8 +51,8 @@ void	val_img_path(t_game *game, t_img *img)
 {
 	if (!img->no || !img->so || !img->we || !img->ea)
 	{
-		error("Error - Error loading the image !!\n");
 		close_game(game);
+		error("Error - Error loading the image !!\n");
 	}
 }
 
