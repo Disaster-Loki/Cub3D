@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-carv <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 09:42:08 by sde-carv          #+#    #+#             */
-/*   Updated: 2025/01/08 09:42:29 by sde-carv         ###   ########.fr       */
+/*   Updated: 2025/01/08 12:03:10 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,29 @@ char	*get_value(char **max, char *str)
 	return (NULL);
 }
 
+char	**get_map(char **max)
+{
+	char	**map;
+	int	i;
+	int	j;
+
+	i = 6;
+	while (max[i])
+		i++;
+	map = malloc(sizeof(char *) * (i - 5));
+	if (!map)
+		return (NULL);
+	i = 6;
+	j = 0;
+	while (max[i])
+	{
+		map[j++] = ft_strdup(max[i]);
+		i++;
+	}
+	map[j] = NULL;
+	return (map);
+}
+
 t_sett	parsing(char *str)
 {
 	t_sett	sett;
@@ -37,11 +60,7 @@ t_sett	parsing(char *str)
 	sett.so = ft_strtrim(get_value(max, "SO"), " ");
 	sett.we = ft_strtrim(get_value(max, "WE"), " ");
 	sett.ea = ft_strtrim(get_value(max, "EA"), " ");
-	printf("roof = %s\n", sett.c_roof);
-	printf("floor = %s\n", sett.c_floor);
-	printf("no = %s\n", sett.no);
-	printf("so = %s\n", sett.so);
-	printf("we = %s\n", sett.we);
-	printf("ea = %s\n", sett.ea);
+	sett.map = get_map(max);
+	print_matrix(sett.map);
 	return (sett);
 }
