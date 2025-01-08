@@ -13,6 +13,7 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
+# include <math.h>
 # include <fcntl.h>
 # include <stdio.h>
 # include <unistd.h>
@@ -21,6 +22,12 @@
 # include "../minilibx-linux/mlx.h"
 
 # define ESC 65307
+
+typedef struct s_pos
+{
+	double	x;
+	double	y;
+}	t_pos;
 
 typedef struct s_point
 {
@@ -35,6 +42,13 @@ typedef struct s_img
 	void	*we;
 	void	*ea;
 }			t_img;
+
+typedef struct s_raycast
+{
+	t_point	pos;
+	t_pos	dir;
+	t_pos	plane;
+};
 
 typedef struct s_sett
 {
@@ -91,5 +105,8 @@ void	print_matrix(char **mt);
 
 // Parsing
 t_sett	parsing(char *str);
+t_point	pos(char **map);
+int		val_charater(char c);
+void 	p_direction(t_raycast *ray, char c);
 
 #endif

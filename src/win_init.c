@@ -30,13 +30,6 @@ void	get_img(t_game *g, t_img *img, int x, int y)
 	val_img_path(g, img);
 }
 
-int	keypress(int key, t_game *game)
-{
-	if (key == ESC)
-		close_game(game);
-	return (1);
-}
-
 void	win_init(char **args)
 {
 	t_game	g;
@@ -48,6 +41,6 @@ void	win_init(char **args)
 	g.win = mlx_new_window(g.mlx, g.pos.x, g.pos.y, g.name);
 	mlx_hook(g.win, 02, 1L << 0, keypress, &g);
 	mlx_hook(g.win, 17, 0, close_game, &g);
-	//print_window(&g);
+	print_window(&g);
 	mlx_loop(g.mlx);
 }

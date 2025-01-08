@@ -34,6 +34,9 @@ S_FILES		= ./src/main.c    			\
 			  ./src/val_file.c  		\
 			  ./src/win_init.c  		\
 			  ./src/parsing.c  			\
+			  ./src/keyboard.c  		\
+			  ./src/raycast.c  			\
+			  ./src/player.c  			\
 
 S_OBJ		= $(S_FILES:.c=.o)
 
