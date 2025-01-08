@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-carv <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 09:47:53 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/08/20 09:48:06 by sde-carv         ###   ########.fr       */
+/*   Updated: 2025/01/08 12:25:21 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,10 @@ void	val_img_path(t_game *game, t_img *img);
 int		open_file(char *file);
 
 // Win_init
-void	init_vars(t_game *g, char **args);
-void	get_img(t_game *g, t_img *img, int x, int y);
-int		keypress(int key, t_game *game);
 void	win_init(char **args);
+void	init_vars(t_game *g, t_sett *sett);
+int		keypress(int key, t_game *game);
+void	get_img(t_game *g, t_img *img, int x, int y);
 
 // Main
 void	print_matrix(char **mt);

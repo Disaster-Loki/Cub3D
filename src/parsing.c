@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 09:42:08 by sde-carv          #+#    #+#             */
-/*   Updated: 2025/01/08 12:03:10 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2025/01/08 12:28:04 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,5 @@ t_sett	parsing(char *str)
 	sett.we = ft_strtrim(get_value(max, "WE"), " ");
 	sett.ea = ft_strtrim(get_value(max, "EA"), " ");
 	sett.map = get_map(max);
-	print_matrix(sett.map);
 	return (sett);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-carv <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 13:13:47 by sde-carv          #+#    #+#             */
-/*   Updated: 2025/01/07 13:14:29 by sde-carv         ###   ########.fr       */
+/*   Updated: 2025/01/08 12:45:56 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,8 @@ int	max_strlen(char **mtx)
 
 void	val_img_path(t_game *game, t_img *img)
 {
+	(void)game;
 	if (!img->no || !img->so || !img->we || !img->ea)
-	{
-		close_game(game);
 		error("Error - Error loading the image !!\n");
-	}
 }
 
