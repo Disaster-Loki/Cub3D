@@ -23,17 +23,17 @@
 
 # define ESC 65307
 
-typedef struct s_pos
-{
-	double	x;
-	double	y;
-}	t_pos;
-
 typedef struct s_point
 {
 	int	x;
 	int	y;
 }	t_point;
+
+typedef struct s_point_d
+{
+	double	x;
+	double	y;
+}	t_point_d;
 
 typedef struct s_img
 {
@@ -41,14 +41,15 @@ typedef struct s_img
 	void	*so;
 	void	*we;
 	void	*ea;
+	void	*ptr;
 }			t_img;
 
 typedef struct s_raycast
 {
-	t_point	pos;
-	t_pos	dir;
-	t_pos	plane;
-};
+	t_point_d	pos;
+	t_point_d	dir;
+	t_point_d	plane;
+}	t_raycast;
 
 typedef struct s_sett
 {
@@ -57,14 +58,15 @@ typedef struct s_sett
 	char	*we;
 	char	*ea;
 	char	**map;
-	char	*c_roof;
-	char	*c_floor;
+	int		c_roof;
+	int		c_floor;
 }	t_sett;
 
 typedef struct s_game
 {
 	t_img	img;
 	t_point	pos;
+	t_point	ply;
 	t_sett	*sett;
 	void	*mlx;
 	void	*win;
@@ -108,5 +110,7 @@ t_sett	parsing(char *str);
 t_point	pos(char **map);
 int		val_charater(char c);
 void 	p_direction(t_raycast *ray, char c);
+void 	render_window(t_game *g);
+int		character(char c);
 
 #endif

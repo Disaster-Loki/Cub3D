@@ -41,35 +41,3 @@ t_point	pos(char **map)
 	}
 	return (pos);
 }
-
-void player_direction(t_raycast *ray, char c)
-{
-    if (c == 'N')
-    {
-        ray->dir.x = 0.0;
-        ray->dir.y = -1.0;
-        ray->plane.x = 0.66;
-        ray->plane.y = 0.0;
-    }
-    else if (c == 'S')
-    {
-    	ray->dir.x = 0.0;
-        ray->dir.y = 1.0;
-        ray->plane.x = 0.66;
-        ray->plane.y = 0.0;
-    }
-    else if (c == 'E')
-    {
-    	ray->dir.x = 1.0;
-        ray->dir.y = 0.0;
-        ray->plane.x = 0.00;
-        ray->plane.y = 0.66;
-    }
-    else if (c == 'W')
-    {
-    	ray->dir.x = -1.0;
-        ray->dir.y = 0.0;
-        ray->plane.x = 0.0;
-        ray->plane.y = -0.66;
-    }
-}
