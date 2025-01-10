@@ -14,15 +14,17 @@
 
 void	alter_position(t_game *game, t_point pos, int x, int y)
 {
+	char	ch;
 	char	move;
 
 	if (pos.x + x > game->pos.x || pos.y + y > game->pos.y)
 		return ;
-	move = game->sett->map[pos.x][pos.y];
-	if (move != '1' && character(game->sett->map[pos.x][pos.y]))
+	ch = game->sett->map[pos.x][pos.y];
+	move = game->sett->map[pos.x + x][pos.y + y];
+	if (move != '1' && character(ch))
 	{
 		game->sett->map[pos.x][pos.y] = '0';
-		game->sett->map[pos.x + x][pos.y + y] = move;
+		game->sett->map[pos.x + x][pos.y + y] = ch;
 		render_window(game);
 	}
 }
