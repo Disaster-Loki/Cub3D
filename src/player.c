@@ -33,8 +33,8 @@ t_point	pos(char **map)
 		{
 			if (character(map[i][j]))
 			{
-				pos.x = i;
-				pos.y = j;
+				pos.y = i;
+				pos.x = j;
 				return (pos);
 			}
 		}

@@ -12,19 +12,20 @@
 
 #include "../inc/cub3d.h"
 
-void	alter_position(t_game *game, t_point pos, int x, int y)
+void	alter_position(t_game *game, t_point pos, int y, int x)
 {
 	char	ch;
 	char	move;
 
 	if (pos.x + x > game->pos.x || pos.y + y > game->pos.y)
 		return ;
-	ch = game->sett->map[pos.x][pos.y];
-	move = game->sett->map[pos.x + x][pos.y + y];
+	ch = game->sett->map[pos.y][pos.x];
+	move = game->sett->map[pos.y + y][pos.x + x];
+	print_matrix(game->sett->map);
 	if (move != '1' && character(ch))
 	{
-		game->sett->map[pos.x][pos.y] = '0';
-		game->sett->map[pos.x + x][pos.y + y] = ch;
+		game->sett->map[pos.y][pos.x] = '0';
+		game->sett->map[pos.y + y][pos.x + x] = ch;
 		render_window(game);
 	}
 }

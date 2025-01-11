@@ -17,8 +17,8 @@ void	init_vars(t_game *g, t_sett *sett)
 	g->sett = sett;
 	g->name = "CUB3D";
 	g->mlx = mlx_init();
-	g->pos.y = matrix_len(g->sett->map) * 42;
-	g->pos.x = max_strlen(g->sett->map) * 42;
+	g->pos.y = matrix_len(g->sett->map) * 32;
+	g->pos.x = max_strlen(g->sett->map) * 32;
 }
 
 void	get_img(t_game *g, t_img *img, int x, int y)
