@@ -42,6 +42,12 @@ typedef struct s_img
 	void	*we;
 	void	*ea;
 	void	*ptr;
+	int		width;
+	int		height;
+	char    *addr;         // Address of the image data
+    int     bpp;           // Bits per pixel
+    int     line_length;   // Length of a line in bytes
+    int     endian;
 }			t_img;
 
 typedef struct s_raycast
@@ -72,6 +78,7 @@ typedef struct s_game
 	void	*win;
 	char	*name;
 	char	**map;
+	char	cht;
 }	t_game;
 
 // Close

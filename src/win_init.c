@@ -12,22 +12,27 @@
 
 #include "../inc/cub3d.h"
 
-void	init_vars(t_game *g, t_sett *sett)
-{
-	g->sett = sett;
-	g->name = "CUB3D";
-	g->mlx = mlx_init();
-	g->pos.y = matrix_len(g->sett->map) * 32;
-	g->pos.x = max_strlen(g->sett->map) * 32;
-}
-
 void	get_img(t_game *g, t_img *img, int x, int y)
 {
 	img->no = mlx_xpm_file_to_image(g->mlx, g->sett->no, &x, &y);
 	img->so = mlx_xpm_file_to_image(g->mlx, g->sett->so, &x, &y);
 	img->we = mlx_xpm_file_to_image(g->mlx, g->sett->we, &x, &y);
 	img->ea = mlx_xpm_file_to_image(g->mlx, g->sett->ea, &x, &y);
+	img->width = x;
+	img->height = y;
 	//val_img_path(g, img);
+}
+
+void	init_vars(t_game *g, t_sett *sett)
+{
+	g->sett = sett;
+	g->name = "CUB3D";
+	g->mlx = mlx_init();
+	get_img(g, &g->img, 0, 0);
+	g->ply = pos(g->sett->map);
+	g->cht = g->sett->map[g->ply.y][g->ply.x];
+	g->pos.y = matrix_len(g->sett->map) * g->img.width + 3;
+	g->pos.x = max_strlen(g->sett->map) * g->img.height + 3;
 }
 
 void	win_init(char **args)
@@ -37,7 +42,6 @@ void	win_init(char **args)
 
 	sett = parsing(args[1]);
 	init_vars(&g, &sett);
-	get_img(&g, &g.img, 0, 0);
 	g.win = mlx_new_window(g.mlx, g.pos.x, g.pos.y, g.name);
 	render_window(&g);
 	mlx_hook(g.win, 02, 1L << 0, keypress, &g);

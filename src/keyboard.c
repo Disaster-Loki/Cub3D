@@ -12,36 +12,34 @@
 
 #include "../inc/cub3d.h"
 
-void	alter_position(t_game *game, t_point pos, int y, int x)
+void	alter_position(t_game *g, t_point pos, int y, int x)
 {
-	char	ch;
 	char	move;
 
-	if (pos.x + x > game->pos.x || pos.y + y > game->pos.y)
+	if (pos.y + y > g->pos.y || pos.x + x > g->pos.x)
 		return ;
-	ch = game->sett->map[pos.y][pos.x];
-	move = game->sett->map[pos.y + y][pos.x + x];
-	print_matrix(game->sett->map);
-	if (move != '1' && character(ch))
+	move = g->sett->map[pos.y + y][pos.x + x];
+	if (move != '1')
 	{
-		game->sett->map[pos.y][pos.x] = '0';
-		game->sett->map[pos.y + y][pos.x + x] = ch;
-		render_window(game);
+		g->sett->map[pos.y][pos.x] = '0';
+		g->sett->map[pos.y + y][pos.x + x] = g->cht;
+		g->ply.y = pos.y + y;
+		g->ply.x = pos.x + x;
+		render_window(g);
 	}
 }
 
-int	keypress(int key, t_game *game)
+int	keypress(int key, t_game *g)
 {
-	game->ply = pos(game->sett->map);
 	if (key == 'w' || key == 65362)
-		alter_position(game, game->ply, -1, 0);
+		alter_position(g, g->ply, -1, 0);
 	if (key == 's' || key == 65364)
-		alter_position(game, game->ply, 1, 0);
+		alter_position(g, g->ply, 1, 0);
 	if (key == 'd' || key == 65363)
-		alter_position(game, game->ply, 0, 1);
+		alter_position(g, g->ply, 0, 1);
 	if (key == 'a' || key == 65361)
-		alter_position(game, game->ply, 0, -1);
+		alter_position(g, g->ply, 0, -1);
 	if (key == ESC)
-		close_game(game);
+		close_game(g);
 	return (1);
 }

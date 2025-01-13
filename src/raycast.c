@@ -12,23 +12,31 @@
 
 #include "../inc/cub3d.h"
 
-void p_direction(t_raycast *ray, char c) {
-    if (c == 'N') {
+void p_direction(t_raycast *ray, char c)
+{
+    if (c == 'N')
+    {
         ray->dir.x = 0;
         ray->dir.y = -1;
         ray->plane.x = 0.66;
         ray->plane.y = 0.0;
-    } else if (c == 'S') {
+    }
+    else if (c == 'S')
+    {
         ray->dir.x = 0;
         ray->dir.y = 1;
         ray->plane.x = -0.66;
         ray->plane.y = 0.0;
-    } else if (c == 'E') {
+    }
+    else if (c == 'E')
+    {
         ray->dir.x = 1;
         ray->dir.y = 0;
         ray->plane.x = 0.0;
         ray->plane.y = 0.66;
-    } else if (c == 'W') {
+    }
+    else if (c == 'W')
+    {
         ray->dir.x = -1;
         ray->dir.y = 0;
         ray->plane.x = 0.0;
@@ -36,37 +44,33 @@ void p_direction(t_raycast *ray, char c) {
     }
 }
 
-t_point_d find_player_position(char **map)
+void draw_column(t_game *g, int x, int start, int end, void *imagem)
 {
-    t_point_d pos;
-    pos.x = 0;
-    pos.y = 0;
-    for (int y = 0; map[y]; y++) {
-        for (int x = 0; map[y][x]; x++) {
-            if (map[y][x] == 'N' || map[y][x] == 'S' || map[y][x] == 'E' || map[y][x] == 'W') {
-                pos.x = x + 0.5;
-                pos.y = y + 0.5;
-                return pos;
-            }
-        }
+    char *addr = mlx_get_data_addr(g->img.ptr, &g->img.bpp, &g->img.line_length, &g->img.endian);
+
+    int img_width = g->img.width;
+    int img_height = g->img.height;
+
+    for (int y = start; y <= end; y++)
+    {
+        int textureY = (y - start) * img_height / (end - start);
+        int textureX = (int)((x / (double)g->pos.x) * img_width);
+        if (textureX < 0) textureX += img_width;
+        char *pixel = (char *)imagem + (textureY * img_width + textureX) * (g->img.bpp / 8);
+        unsigned int color = *(unsigned int *)pixel;
+        *(unsigned int *)(addr + (y * g->img.line_length + x * (g->img.bpp / 8))) = color;
     }
-    return pos;
+    mlx_put_image_to_window(g->mlx, g->win, g->img.ptr, 0, 0);
 }
 
-void draw_column(t_game *g, int x, int start, int end, void *img) {
-    for (int y = 0; y < g->pos.y; y++) {
-        if (y >= start && y <= end) {
-            mlx_put_image_to_window(g->mlx, g->win, img, x, y);
-        }
-    }
-}
-
-void raycasting(t_game *g) {
+void raycasting(t_game *g)
+{
     t_raycast ray;
-    ray.pos = find_player_position(g->sett->map);
-    p_direction(&ray, g->sett->map[(int)ray.pos.y][(int)ray.pos.x]);
-
-    for (int x = 0; x < g->pos.x; x++) {
+    ray.pos = (t_point_d){g->ply.x + 0.5, g->ply.y + 0.5};
+    p_direction(&ray, g->cht);
+    
+    for (int x = 0; x < g->pos.x; x++)
+    {
         double cameraX = 2 * x / (double)g->pos.x - 1;
         double rayDirX = ray.dir.x + ray.plane.x * cameraX;
         double rayDirY = ray.dir.y + ray.plane.y * cameraX;
@@ -81,9 +85,9 @@ void raycasting(t_game *g) {
         double deltaDistY = fabs(1 / rayDirY);
         double perpWallDist;
 
+        int hit = 0;
         int stepX;
         int stepY;
-        int hit = 0;
         int side;
 
         if (rayDirX < 0) {
@@ -100,7 +104,6 @@ void raycasting(t_game *g) {
             stepY = 1;
             sideDistY = (mapY + 1.0 - ray.pos.y) * deltaDistY;
         }
-
         while (!hit) {
             if (sideDistX < sideDistY) {
                 sideDistX += deltaDistX;
@@ -128,38 +131,34 @@ void raycasting(t_game *g) {
         if (drawEnd >= g->pos.y)
             drawEnd = g->pos.y - 1;
 
-        void *wallImage;
+        void *wall;
         if (side == 0 && rayDirX > 0)
-            wallImage = g->img.ea;
+            wall = g->img.ea; //EA
         else if (side == 0 && rayDirX < 0)
-            wallImage = g->img.we;
+            wall = g->img.we; // WE
         else if (side == 1 && rayDirY > 0)
-            wallImage = g->img.so;
+            wall = g->img.so; // SO
         else
-            wallImage = g->img.no;
-        draw_column(g, x, drawStart, drawEnd, wallImage);
+            wall = g->img.no; // NO
+        draw_column(g, x, drawStart, drawEnd, wall);
     }
 }
 
+
 void render_window(t_game *g)
 {
-	int		bpp;
-	char	*addr;
-	int		endian;
-	int		line_length;
-
-	g->img.ptr = mlx_new_image(g->mlx, g->pos.x, g->pos.y);
-	addr = mlx_get_data_addr(g->img.ptr, &bpp, &line_length, &endian);
-	for (int y = 0; y < g->pos.y; y++)
-	{
-		for (int x = 0; x < g->pos.x; x++)
-		{
-			if (y < (g->pos.y / 2))
-				*(unsigned int *)(addr + (y * line_length + x * (bpp / 8))) = g->sett->c_floor;
-			else
-				*(unsigned int *)(addr + (y * line_length + x * (bpp / 8))) = g->sett->c_roof;
-		}
-	}
-	mlx_put_image_to_window(g->mlx, g->win, g->img.ptr, 0, 0);
-	raycasting(g);
+    g->img.ptr = mlx_new_image(g->mlx, g->pos.x, g->pos.y);
+    g->img.addr = mlx_get_data_addr(g->img.ptr, &g->img.bpp, &g->img.line_length, &g->img.endian);
+    mlx_clear_window(g->mlx, g->win);
+    for (int y = 0; y < g->pos.y; y++) {
+        for (int x = 0; x < g->pos.x; x++) {
+            if (y < g->pos.y / 2)
+                *(unsigned int *)(g->img.addr + (y * g->img.line_length + x * (g->img.bpp / 8))) = g->sett->c_roof;
+            else
+                *(unsigned int *)(g->img.addr + (y * g->img.line_length + x * (g->img.bpp / 8))) = g->sett->c_floor;
+        }
+    }
+    mlx_put_image_to_window(g->mlx, g->win, g->img.ptr, 0, 0);
+    raycasting(g);
+    print_matrix(g->sett->map);
 }
