@@ -31,13 +31,13 @@ void	alter_position(t_game *g, t_point pos, int y, int x)
 
 int	keypress(int key, t_game *g)
 {
-	if (key == 'w' || key == 65362)
+	if (key == 'w')
 		alter_position(g, g->ply, -1, 0);
-	if (key == 's' || key == 65364)
+	if (key == 's')
 		alter_position(g, g->ply, 1, 0);
-	if (key == 'd' || key == 65363)
+	if (key == 'd')
 		alter_position(g, g->ply, 0, 1);
-	if (key == 'a' || key == 65361)
+	if (key == 'a')
 		alter_position(g, g->ply, 0, -1);
 	if (key == ESC)
 		close_game(g);

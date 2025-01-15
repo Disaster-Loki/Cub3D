@@ -55,6 +55,7 @@ typedef struct s_raycast
 	t_point_d	pos;
 	t_point_d	dir;
 	t_point_d	plane;
+	double		speed;
 }	t_raycast;
 
 typedef struct s_sett
