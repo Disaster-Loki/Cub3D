@@ -117,8 +117,8 @@ void update_frame_time(t_raycast *ray)
     ray->old_time = ray->time;
     ray->time = current_time();
     ray->frame_time = (double)(ray->time - ray->old_time) / 1000.0;
-    ray->move_speed = ray->frame_time * 5.0;
-    ray->rot_speed = ray->frame_time * 3.0;
+    ray->move_speed = ray->frame_time * 1.5;
+    ray->rot_speed = ray->frame_time * 10.0;
 }
 
 void raycasting(t_game *g, t_raycast *ray)
