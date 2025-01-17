@@ -18,11 +18,12 @@ void	draw_column(t_game *g, int x, int start, int end, int color)
 	char	*pixel;
 
 	i = start - 1;
+
 	g->img.addr = mlx_get_data_addr(g->img.ptr, &g->img.bpp,
 		&g->img.line_length, &g->img.endian);
-	pixel = (char *)g->img.addr + (i * g->img.line_length + x * (g->img.bpp / 8));
-	while (++i < end)
+    while (++i < end)
 	{
+        pixel = (char *)g->img.addr + (i * g->img.line_length + x * (g->img.bpp / 8));
 		*(unsigned int *)pixel = color;
 		pixel += g->img.line_length;
 	}
@@ -117,7 +118,7 @@ void update_frame_time(t_raycast *ray)
     ray->time = current_time();
     ray->frame_time = (double)(ray->time - ray->old_time) / 1000.0;
     ray->move_speed = ray->frame_time * 5.0;
-    ray->rot_speed = ray->frame_time * 20.0;
+    ray->rot_speed = ray->frame_time * 3.0;
 }
 
 void raycasting(t_game *g, t_raycast *ray)
@@ -126,10 +127,10 @@ void raycasting(t_game *g, t_raycast *ray)
     int color;
 
     x = -1;
+    ray->time = current_time();
     if (!g->flag)
         player_dir_plane(ray, g->cht);
-    ray->pos = (t_point_d){g->pos.x + 0.5, g->pos.y + 0.5};
-    ray->time = current_time();
+    ray->pos = create_point(g->pos.x + 0.5, g->pos.y + 0.5);
     while (++x < g->width)
     {
         init_ray(g, ray, x);
@@ -178,5 +179,5 @@ void	render_window(t_game *g)
 {
 	draw_background(g);
 	raycasting(g, &g->ray);
-	print_matrix(g->sett->map);
+	//print_matrix(g->sett->map);
 }

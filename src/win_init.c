@@ -31,8 +31,8 @@ void	init_vars(t_game *g, t_sett *sett)
 	get_img(g, &g->img, 0, 0);
 	g->pos = pos(g->sett->map);
 	g->cht = g->sett->map[g->pos.y][g->pos.x];
-	g->height = matrix_len(g->sett->map) * g->img.width * 2;
-	g->width = max_strlen(g->sett->map) * g->img.height * 2;
+	g->height = matrix_len(g->sett->map) * g->img.width + 3;
+	g->width = max_strlen(g->sett->map) * g->img.height + 3;
 }
 
 void	win_init(char **args)
