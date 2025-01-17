@@ -18,10 +18,15 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <sys/time.h>
 # include "../libft/inc/libft.h"
 # include "../minilibx-linux/mlx.h"
 
+# define UP 119
+# define DOWN 115
 # define ESC 65307
+# define S_LEFT 65363
+# define S_RIGHT 65361
 
 typedef struct s_point
 {
@@ -44,19 +49,11 @@ typedef struct s_img
 	void	*ptr;
 	int		width;
 	int		height;
-	char    *addr;         // Address of the image data
-    int     bpp;           // Bits per pixel
-    int     line_length;   // Length of a line in bytes
+	char    *addr;         
+    int     bpp;           
+    int     line_length;   
     int     endian;
-}			t_img;
-
-typedef struct s_raycast
-{
-	t_point_d	pos;
-	t_point_d	dir;
-	t_point_d	plane;
-	double		speed;
-}	t_raycast;
+}	t_img;
 
 typedef struct s_sett
 {
@@ -69,17 +66,49 @@ typedef struct s_sett
 	int		c_floor;
 }	t_sett;
 
+typedef struct s_raycast
+{
+	t_point_d	pos;
+	t_point_d	dir;
+	t_point_d	plane;
+	int			hit;
+	int 		side;
+	int			map_x;
+	int			map_y;
+	int 		step_x;
+	int 		step_y;
+	double		rot_speed;
+	double		move_speed;
+	long		time;
+	long		old_time;
+	double		frame_time;
+	double		camera_x;
+	double		ray_dir_x;
+	double		ray_dir_y;
+	int			draw_end;
+	int			draw_start;
+	double		side_dist_x;
+	double		side_dist_y;
+	int			line_height;
+	double		delta_dist_x;
+	double		delta_dist_y;
+	double		perp_wall_dist;
+}	t_raycast;
+
 typedef struct s_game
 {
 	t_img	img;
 	t_point	pos;
-	t_point	ply;
+	int		width;
+	int		height;
 	t_sett	*sett;
 	void	*mlx;
 	void	*win;
 	char	*name;
 	char	**map;
 	char	cht;
+	t_raycast ray;
+	char	flag;
 }	t_game;
 
 // Close
@@ -120,5 +149,8 @@ int		val_charater(char c);
 void 	p_direction(t_raycast *ray, char c);
 void 	render_window(t_game *g);
 int		character(char c);
+t_point_d	create_point(double x, double y);
+long	current_time(void);
+void	player_dir_plane(t_raycast *ray, char c);
 
 #endif

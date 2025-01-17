@@ -37,6 +37,7 @@ S_FILES		= ./src/main.c    			\
 			  ./src/keyboard.c  		\
 			  ./src/raycast.c  			\
 			  ./src/player.c  			\
+			  ./src/r_utils.c  			\
 
 S_OBJ		= $(S_FILES:.c=.o)
 
