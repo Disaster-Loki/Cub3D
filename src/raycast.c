@@ -43,22 +43,28 @@ void init_ray(t_game *g, t_raycast *ray, int x)
 void cal_perp_wall_dist(t_raycast *ray)
 {
     if (ray->side == 0)
-        ray->perp_wall_dist = (ray->map_x - ray->pos.x + (1 - ray->step_x) / 2) / ray->ray_dir_x;
+        ray->perp_wall_dist = (ray->side_dist_x - ray->delta_dist_x);
     else
-        ray->perp_wall_dist = (ray->map_y - ray->pos.y + (1 - ray->step_y) / 2) / ray->ray_dir_y;
+        ray->perp_wall_dist = (ray->side_dist_y - ray->delta_dist_y);
 }
 
 int get_wall_color(t_raycast *ray)
 {
-    if (ray->side == 0 && ray->ray_dir_x > 0)
-        return (923124);
-    else if (ray->side == 0 && ray->ray_dir_x < 0)
-        return (631423);
-    else if (ray->side == 1 && ray->ray_dir_x > 0)
-        return (239399);
-    return (345134);
+    if (ray->side == 0)
+    {
+        if (ray->ray_dir_x > 0)
+            return (0xFF0000);
+        else
+            return (0x0000FF);
+    }
+    else
+    {
+        if (ray->ray_dir_y > 0)
+            return (0x00FF00);
+        else
+            return (0xFFFF00);
+    }
 }
-
 void set_steps_and_sidedist(t_raycast *ray)
 {
     if (ray->ray_dir_x < 0)
@@ -117,8 +123,8 @@ void update_frame_time(t_raycast *ray)
     ray->old_time = ray->time;
     ray->time = current_time();
     ray->frame_time = (double)(ray->time - ray->old_time) / 1000.0;
-    ray->move_speed = ray->frame_time * 1.5;
-    ray->rot_speed = ray->frame_time * 10.0;
+    ray->move_speed = 0.08;
+    ray->rot_speed = ray->frame_time * 20.0;
 }
 
 void raycasting(t_game *g, t_raycast *ray)
@@ -175,9 +181,9 @@ void	draw_background(t_game *g)
 	}
 }
 
-void	render_window(t_game *g)
+int	render_window(t_game *g)
 {
 	draw_background(g);
 	raycasting(g, &g->ray);
-	//print_matrix(g->sett->map);
+    return (0);
 }

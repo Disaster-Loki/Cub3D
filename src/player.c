@@ -17,11 +17,11 @@ int	character(char c)
 	return (c == 'N' || c == 'S' || c == 'W' || c == 'E');
 }
 
-t_point	pos(char **map)
+t_point_d	pos(char **map)
 {
 	int		i;
 	int		j;
-	t_point	pos;
+	t_point_d	pos;
 
 	i = -1;
 	pos.x = 0;

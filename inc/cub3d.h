@@ -27,6 +27,7 @@
 # define ESC 65307
 # define S_LEFT 65363
 # define S_RIGHT 65361
+# define EPSILON 0.1
 
 typedef struct s_point
 {
@@ -98,7 +99,7 @@ typedef struct s_raycast
 typedef struct s_game
 {
 	t_img	img;
-	t_point	pos;
+	t_point_d	pos;
 	int		width;
 	int		height;
 	t_sett	*sett;
@@ -144,10 +145,10 @@ void	print_matrix(char **mt);
 
 // Parsing
 t_sett	parsing(char *str);
-t_point	pos(char **map);
+t_point_d	pos(char **map);
 int		val_charater(char c);
 void 	p_direction(t_raycast *ray, char c);
-void 	render_window(t_game *g);
+int 	render_window(t_game *g);
 int		character(char c);
 t_point_d	create_point(double x, double y);
 long	current_time(void);
