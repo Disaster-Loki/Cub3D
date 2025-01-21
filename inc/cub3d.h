@@ -146,6 +146,8 @@ void	print_matrix(char **mt);
 // Parsing
 t_sett	parsing(char *str);
 t_point_d	pos(char **map);
+char	**get_map(char **max);
+char	*get_value(char **max, char *str);
 int		val_charater(char c);
 void 	p_direction(t_raycast *ray, char c);
 int 	render_window(t_game *g);
@@ -153,5 +155,87 @@ int		character(char c);
 t_point_d	create_point(double x, double y);
 long	current_time(void);
 void	player_dir_plane(t_raycast *ray, char c);
+
+// Validate
+void	validate_file(char **max, char *str);
+// char	*dell_spaces(char *str);
+void	validate_elements(char **max);
+
+// treat_map.c.c
+void	treat_map(char **max, char *str);
+void	map_new_line(char *str, char **max);
+void	help_new_line(char *file, int i, char **max);
+void	get_map_to_validate(char *file, int i);
+void	validate_map(char *str, char **max);
+
+// forbiden_char.c
+void	has_player(char **map, char **max);
+void	forbiden_char(char **map, char **max);
+
+// player_in_map.c
+void	player_in_map(char **map, char **max);
+void	only_n(char **map, int i, int j, char **max);
+void	only_s(char **map, int i, int j, char **max);
+void	only_w(char **map, int i, int j, char **max);
+void	only_e(char **map, int i, int j, char **max);
+
+// more_players.c
+void	more_players(char **map, char **max);
+void	more_n(char **map, int i, int j, char **max);
+void	more_s(char **map, int i, int j, char **max);
+void	more_w(char **map, int i, int j, char **max);
+void	more_e(char **map, int i, int j, char **max);
+
+// many_textures.c
+void	many_textures(char **max);
+void	west(char **max);
+void	east(char **max);
+void	south(char **max);
+void	north(char **max);
+
+// good_textures.c
+void	good_textures(char **max);
+void	good_we(char **mat, char *str);
+void	good_ea(char **mat, char *str);
+void	good_so(char **mat, char *str);
+void	good_no(char **mat, char *str);
+
+// textures_path.c
+void	textures_path(char **max);
+void	path_we(char *path, char **max);
+void	path_ea(char *path, char **max);
+void	path_so(char *path, char **max);
+void	path_no(char *path, char **max);
+
+// textures_extencion.c
+void	textures_extencion(char **max);
+void	extencion_we(char *str, char **max);
+void	extencion_ea(char *str, char **max);
+void	extencion_so(char *str, char **max);
+void	extencion_no(char *str, char **max);
+
+// many_colors.c
+char	**split_color(char *str);
+void	many_colors(char **max);
+void	one_floor(char **max);
+void	one_roof(char **max);
+
+// floor_roof.c
+void	floor_roof(char **max);
+void	floor_roof_weird_char(char *floor, char *roof, char **max);
+void	floor_roof_one_space(char *floor, char *roof);
+void	big_nbr_color(char *floor, char *roof);
+char	**split_color(char *str);
+
+// sorrounded_by_1.c
+void	walls_at_edges(char **map, char **max);
+void	inside_map(char **map, char **max);
+void	char_by_char(char **map2, char **map, char **max);
+void	last_char(char **map, char **max);
+int		bigger_line(char **mat);
+
+// help_sorround_by_1.c
+void	middle_lines(char **map, char **max);
+void	last_line(char **mat, char **max);
 
 #endif

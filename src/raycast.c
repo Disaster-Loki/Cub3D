@@ -65,6 +65,7 @@ int get_wall_color(t_raycast *ray)
             return (0xFFFF00);
     }
 }
+
 void set_steps_and_sidedist(t_raycast *ray)
 {
     if (ray->ray_dir_x < 0)
@@ -123,7 +124,7 @@ void update_frame_time(t_raycast *ray)
     ray->old_time = ray->time;
     ray->time = current_time();
     ray->frame_time = (double)(ray->time - ray->old_time) / 1000.0;
-    ray->move_speed = 0.08;
+    ray->move_speed = 0.09;
     ray->rot_speed = ray->frame_time * 20.0;
 }
 

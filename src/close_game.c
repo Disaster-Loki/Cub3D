@@ -26,7 +26,8 @@ void	close_img(void *mlx, t_img *img)
 
 int	win_close(t_game *game)
 {
-	//free_max(game->map);
+	free_max(game->sett->map);
+	free_max(game->sett->map);
 	close_img(game->mlx, &game->img);
 	mlx_clear_window(game->mlx, game->win);
 	mlx_destroy_window(game->mlx, game->win);

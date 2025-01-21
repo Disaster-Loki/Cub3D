@@ -20,8 +20,13 @@ void	print_matrix(char **mt)
 
 int	main(int av, char **args)
 {
+	char	**cub;
+
 	if (av == 1)
 		return (1);
-	win_init(args);
+	cub = get_file(args[1]);
+	validate_file(cub, args[1]);
+	free_max(cub);
+	//win_init(args);
 	return (0);
 }

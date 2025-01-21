@@ -12,16 +12,39 @@
 
 #include "../inc/cub3d.h"
 
+char	*get_value2(char **max, char *str)
+{
+	int		i;
+	int		len;
+	char	*tmp;
+
+	i = -1;
+	len = ft_strlen(str);
+	while (max[++i])
+	{
+		tmp = ft_strtrim(max[i], " ");
+		if (!ft_strncmp(tmp, str, len) && tmp[len] == ' ')
+			return (tmp + len);
+		free(tmp);
+	}
+	return (NULL);
+}
+
 char	*get_value(char **max, char *str)
 {
+	char	*temp;
 	int		i;
 	int		len;
 
 	i = -1;
 	len = ft_strlen(str);
 	while (max[++i])
-		if (!ft_strncmp(max[i], str, len) && max[i][len] == ' ')
-			return (max[i] + len);
+	{
+		temp = ft_strtrim(max[i], " ");
+		if (!ft_strncmp(temp, str, len) && temp[len] == ' ')
+			return (temp);
+		free(temp);
+	}
 	return (NULL);
 }
 
@@ -71,14 +94,15 @@ t_sett	parsing(char *str)
 	char	*floor;
 
 	max = get_file(str);
-	floor = ft_strtrim(get_value(max, "F"), " ");
-	roof = ft_strtrim(get_value(max, "C"), " ");
+	floor = get_value2(max, "F");
+	roof = get_value2(max, "C");
 	sett.c_floor = rgb_to_hex(floor);
 	sett.c_roof = rgb_to_hex(roof);
-	sett.no = ft_strtrim(get_value(max, "NO"), " ");
-	sett.so = ft_strtrim(get_value(max, "SO"), " ");
-	sett.we = ft_strtrim(get_value(max, "WE"), " ");
-	sett.ea = ft_strtrim(get_value(max, "EA"), " ");
+	sett.no = get_value2(max, "NO");
+	sett.so = get_value2(max, "SO");
+	sett.we = get_value2(max, "WE");
+	sett.ea = get_value2(max, "EA");
 	sett.map = get_map(max);
+	free_max(max);
 	return (sett);
 }

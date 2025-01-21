@@ -27,41 +27,33 @@ void	rotate_camera(t_game *g, t_raycast *ray, double speed)
 	render_window(g);
 }
 
-void move_player(int direction, t_game *g) {
-    double new_x = g->pos.x;
-    double new_y = g->pos.y;
+void	move_player(int direction, t_game *g)
+{
+	double	new_x;
+	double	new_y;
+	double	temp_x;
+	double	temp_y;
 
-    if (direction == UP) {
-    	print_matrix(g->sett->map);
-        double temp_x = g->pos.x + g->ray.dir.x * g->ray.move_speed;
-        double temp_y = g->pos.y + g->ray.dir.y * g->ray.move_speed;
-        if (g->sett->map[(int)temp_x][(int)g->pos.y] != '1') {
-            new_x = temp_x;
-    		printf("Moved X UP: %f\n", temp_x);
-        }
-        if (g->sett->map[(int)g->pos.x][(int)temp_y] != '1') {
-            new_y = temp_y;
-    		printf("Moved Y UP: %f\n", temp_y);
-        }
-    } 
-    else if (direction == DOWN)
-    {
-        double temp_x = g->pos.x - g->ray.dir.x * g->ray.move_speed;
-        double temp_y = g->pos.y - g->ray.dir.y * g->ray.move_speed;
-        if (g->sett->map[(int)temp_x][(int)g->pos.y] != '1') {
-            new_x = temp_x;
-    		printf("Moved X DOWN: %f\n", temp_x);
-        }
-        if (g->sett->map[(int)g->pos.x][(int)temp_y] != '1') {
-            new_y = temp_y;
-    		printf("Moved Y DOWN: %f\n", temp_y);
-        }
-    }
-    g->pos.x = new_x;
-    g->pos.y = new_y;
+	new_x = g->pos.x;
+	new_y = g->pos.y;
+	if (direction == UP)
+	{
+		temp_x = g->pos.x + g->ray.dir.x * g->ray.move_speed;
+		temp_y = g->pos.y + g->ray.dir.y * g->ray.move_speed;
+	}
+	if (direction == DOWN)
+	{
+		temp_x = g->pos.x - g->ray.dir.x * g->ray.move_speed;
+		temp_y = g->pos.y - g->ray.dir.y * g->ray.move_speed;
+	}
+	if (g->sett->map[(int)g->pos.y][(int)temp_x] != '1')
+		new_x = temp_x;
+	if (g->sett->map[(int)temp_y][(int)g->pos.x] != '1')
+		new_y = temp_y;
+	g->pos.x = new_x;
+	g->pos.y = new_y;
 	render_window(g);
 }
-
 
 int	keypress(int key, t_game *g)
 {
