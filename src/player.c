@@ -19,8 +19,8 @@ int	character(char c)
 
 t_point_d	pos(char **map)
 {
-	int		i;
-	int		j;
+	int			i;
+	int			j;
 	t_point_d	pos;
 
 	i = -1;

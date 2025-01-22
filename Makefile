@@ -30,11 +30,14 @@ S_FILES		= ./src/main.c    				\
 			  ./src/close_game.c  			\
 			  ./src/error.c  				\
 			  ./src/utils.c  				\
+			  ./src/draw_window.c  			\
 			  ./src/get_file.c  			\
 			  ./src/win_init.c  			\
 			  ./src/parsing.c  				\
 			  ./src/keyboard.c  			\
 			  ./src/raycast.c  				\
+			  ./src/ray_dda.c  				\
+			  ./src/ray_vars.c  			\
 			  ./src/player.c  				\
 			  ./src/r_utils.c  				\
 			  ./src/validate.c  			\

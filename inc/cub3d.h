@@ -82,11 +82,12 @@ typedef struct s_raycast
 	double		move_speed;
 	long		time;
 	long		old_time;
+	int			draw_end;
 	double		frame_time;
 	double		camera_x;
 	double		ray_dir_x;
 	double		ray_dir_y;
-	int			draw_end;
+	double		wall_type;
 	int			draw_start;
 	double		side_dist_x;
 	double		side_dist_y;
@@ -155,6 +156,16 @@ int		character(char c);
 t_point_d	create_point(double x, double y);
 long	current_time(void);
 void	player_dir_plane(t_raycast *ray, char c);
+void	init_ray(t_game *g, t_raycast *ray, int x);
+void	cal_perp_wall_dist(t_raycast *ray);
+void	set_draw_limits(t_game *g, t_raycast *ray);
+void	update_frame_time(t_raycast *ray);
+void	set_steps_and_sidedist(t_raycast *ray);
+void	check_hit(t_game *g, t_raycast *ray);
+void	create_image(t_game *g, t_img *img);
+void	draw_pixel(t_img *img, int x, int y, int color);
+void	draw_background(t_game *g);
+void	clear_window(t_game *g);
 
 // Validate
 void	validate_file(char **max, char *str);

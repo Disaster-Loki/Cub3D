@@ -27,6 +27,6 @@ int	main(int av, char **args)
 	cub = get_file(args[1]);
 	validate_file(cub, args[1]);
 	free_max(cub);
-	//win_init(args);
+	win_init(args);
 	return (0);
 }

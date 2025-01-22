@@ -22,12 +22,22 @@ void	close_img(void *mlx, t_img *img)
 		mlx_destroy_image(mlx, img->we);
 	if (img->ea)
 		mlx_destroy_image(mlx, img->ea);
+	if (img->ptr)
+		mlx_destroy_image(mlx, img->ptr);
+}
+
+void	free_sett(t_sett *sett)
+{
+	free(sett->no);
+	free(sett->so);
+	free(sett->we);
+	free(sett->ea);
+	free_max(sett->map);
 }
 
 int	win_close(t_game *game)
 {
-	free_max(game->sett->map);
-	free_max(game->sett->map);
+	free_sett(game->sett);
 	close_img(game->mlx, &game->img);
 	mlx_clear_window(game->mlx, game->win);
 	mlx_destroy_window(game->mlx, game->win);

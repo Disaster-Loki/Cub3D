@@ -17,6 +17,7 @@ char	*get_value2(char **max, char *str)
 	int		i;
 	int		len;
 	char	*tmp;
+	char	*line;
 
 	i = -1;
 	len = ft_strlen(str);
@@ -24,7 +25,11 @@ char	*get_value2(char **max, char *str)
 	{
 		tmp = ft_strtrim(max[i], " ");
 		if (!ft_strncmp(tmp, str, len) && tmp[len] == ' ')
-			return (tmp + len);
+		{
+			line = ft_strdup(tmp + len);
+			free(tmp);
+			return (line);
+		}
 		free(tmp);
 	}
 	return (NULL);
@@ -65,9 +70,9 @@ unsigned int	rgb_to_hex(char *rgb)
 
 char	**get_map(char **max)
 {
+	int		i;
+	int		j;
 	char	**map;
-	int	i;
-	int	j;
 
 	i = 6;
 	while (max[i])
@@ -94,8 +99,8 @@ t_sett	parsing(char *str)
 	char	*floor;
 
 	max = get_file(str);
-	floor = get_value2(max, "F");
 	roof = get_value2(max, "C");
+	floor = get_value2(max, "F");
 	sett.c_floor = rgb_to_hex(floor);
 	sett.c_roof = rgb_to_hex(roof);
 	sett.no = get_value2(max, "NO");
@@ -103,6 +108,8 @@ t_sett	parsing(char *str)
 	sett.we = get_value2(max, "WE");
 	sett.ea = get_value2(max, "EA");
 	sett.map = get_map(max);
+	free(roof);
+	free(floor);
 	free_max(max);
 	return (sett);
 }
