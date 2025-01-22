@@ -45,7 +45,7 @@ void	win_init(char **args)
 	init_vars(&g, &sett);
 	g.win = mlx_new_window(g.mlx, g.width, g.height, g.name);
 	create_image(&g, &g.img);
-	render_window(&g);
+	//render_window(&g);
 	mlx_hook(g.win, 02, 1L << 0, keypress, &g);
 	mlx_hook(g.win, 17, 0, close_game, &g);
 	mlx_loop(g.mlx);

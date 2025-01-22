@@ -87,7 +87,7 @@ typedef struct s_raycast
 	double		camera_x;
 	double		ray_dir_x;
 	double		ray_dir_y;
-	double		wall_type;
+	double		wall_x;
 	int			draw_start;
 	double		side_dist_x;
 	double		side_dist_y;
@@ -95,22 +95,25 @@ typedef struct s_raycast
 	double		delta_dist_x;
 	double		delta_dist_y;
 	double		perp_wall_dist;
+	int 		tex_id;
 }	t_raycast;
 
 typedef struct s_game
 {
-	t_img	img;
+	t_img		img;
 	t_point_d	pos;
-	int		width;
-	int		height;
-	t_sett	*sett;
-	void	*mlx;
-	void	*win;
-	char	*name;
-	char	**map;
-	char	cht;
-	t_raycast ray;
-	char	flag;
+	char		cht;
+	t_raycast 	ray;
+	void		*win;
+	void		*mlx;
+	char		flag;
+	char		**map;
+	char		*name;
+	t_sett		*sett;
+	int			width;
+	int			height;
+	int			**textr;
+	int			**buffer;
 }	t_game;
 
 // Close

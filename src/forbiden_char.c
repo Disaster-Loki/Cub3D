@@ -34,7 +34,7 @@ void	has_player(char **map, char **max)
 	{
 		free_max(map);
 		free_max(max);
-		error("error\nThere is no player in the map\n");
+		error("Error\nThere is no player in the map\n");
 	}
 	free_max(map);
 }
