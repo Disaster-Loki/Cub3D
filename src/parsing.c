@@ -17,6 +17,7 @@ char	*get_value2(char **max, char *str)
 	int		i;
 	int		len;
 	char	*tmp;
+	char	*tmp2;
 	char	*line;
 
 	i = -1;
@@ -26,8 +27,10 @@ char	*get_value2(char **max, char *str)
 		tmp = ft_strtrim(max[i], " ");
 		if (!ft_strncmp(tmp, str, len) && tmp[len] == ' ')
 		{
-			line = ft_strdup(tmp + len);
+			tmp2 = ft_strdup(tmp + len);
+			line = ft_strtrim(tmp2, " ");
 			free(tmp);
+			free(tmp2);
 			return (line);
 		}
 		free(tmp);

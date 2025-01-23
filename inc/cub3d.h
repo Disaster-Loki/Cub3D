@@ -81,13 +81,14 @@ typedef struct s_raycast
 	double		rot_speed;
 	double		move_speed;
 	long		time;
+	int 		tex_id;
 	long		old_time;
 	int			draw_end;
 	double		frame_time;
+	double		wall_x;
 	double		camera_x;
 	double		ray_dir_x;
 	double		ray_dir_y;
-	double		wall_x;
 	int			draw_start;
 	double		side_dist_x;
 	double		side_dist_y;
@@ -95,7 +96,6 @@ typedef struct s_raycast
 	double		delta_dist_x;
 	double		delta_dist_y;
 	double		perp_wall_dist;
-	int 		tex_id;
 }	t_raycast;
 
 typedef struct s_game
@@ -142,7 +142,7 @@ int		open_file(char *file);
 void	win_init(char **args);
 void	init_vars(t_game *g, t_sett *sett);
 int		keypress(int key, t_game *game);
-void	get_img(t_game *g, t_img *img, int x, int y);
+void	get_img(t_game *g, t_img *img);
 
 // Main
 void	print_matrix(char **mt);
