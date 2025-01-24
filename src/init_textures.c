@@ -20,9 +20,9 @@ void	get_img(t_game *g, t_img *img)
 	x = 0;
 	y = 0;
 	img->no = mlx_xpm_file_to_image(g->mlx, g->sett->no, &x, &y);
-	img->so = mlx_xpm_file_to_image(g->mlx, g->sett->no, &x, &y);
-	img->we = mlx_xpm_file_to_image(g->mlx, g->sett->no, &x, &y);
-	img->ea = mlx_xpm_file_to_image(g->mlx, g->sett->no, &x, &y);
+	img->so = mlx_xpm_file_to_image(g->mlx, g->sett->so, &x, &y);
+	img->we = mlx_xpm_file_to_image(g->mlx, g->sett->we, &x, &y);
+	img->ea = mlx_xpm_file_to_image(g->mlx, g->sett->ea, &x, &y);
 	img->width = x;
 	img->height = y;
 }
