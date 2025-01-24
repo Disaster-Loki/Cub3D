@@ -25,6 +25,8 @@
 
 # define UP 119
 # define DOWN 115
+# define LEFT 97
+# define RIGHT 100
 # define ESC 65307
 # define S_LEFT 65363
 # define S_RIGHT 65361
