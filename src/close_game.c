@@ -12,6 +12,15 @@
 
 #include "../inc/cub3d.h"
 
+void	free_sett(t_sett *sett)
+{
+	free(sett->no);
+	free(sett->so);
+	free(sett->we);
+	free(sett->ea);
+	free_max(sett->map);
+}
+
 void	close_img(void *mlx, t_img *img)
 {
 	if (img->no)
@@ -26,29 +35,15 @@ void	close_img(void *mlx, t_img *img)
 		mlx_destroy_image(mlx, img->ptr);
 }
 
-void	free_sett(t_sett *sett)
+int	close_game(t_game *game)
 {
-	free(sett->no);
-	free(sett->so);
-	free(sett->we);
-	free(sett->ea);
-	free_max(sett->map);
-}
-
-int	win_close(t_game *game)
-{
+	free(game->textr);
 	free_sett(game->sett);
 	close_img(game->mlx, &game->img);
 	mlx_clear_window(game->mlx, game->win);
 	mlx_destroy_window(game->mlx, game->win);
 	mlx_destroy_display(game->mlx);
 	free(game->mlx);
-	return (0);
-}
-
-int	close_game(t_game *game)
-{
-	if (!win_close(game))
-		exit(0);
+	exit(0);
 	return (0);
 }

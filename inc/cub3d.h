@@ -10,9 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef CUB3D_H
+# define CUB3D_H
 
+# include "file.h"
 # include <math.h>
 # include <fcntl.h>
 # include <stdio.h>
@@ -43,17 +44,17 @@ typedef struct s_point_d
 
 typedef struct s_img
 {
+	int		bpp;
 	void	*no;
 	void	*so;
 	void	*we;
 	void	*ea;
 	void	*ptr;
+	char	*addr;
 	int		width;
 	int		height;
-	char    *addr;         
-    int     bpp;           
-    int     line_length;   
-    int     endian;
+	int		endian;
+	int		line_length;
 }	t_img;
 
 typedef struct s_sett
@@ -72,24 +73,26 @@ typedef struct s_raycast
 	t_point_d	pos;
 	t_point_d	dir;
 	t_point_d	plane;
+	int			tex_x;
+	int			tex_y;
 	int			hit;
-	int 		side;
+	int			side;
 	int			map_x;
 	int			map_y;
-	int 		step_x;
-	int 		step_y;
-	double		rot_speed;
-	double		move_speed;
+	int			step_x;
+	int			step_y;
 	long		time;
-	int 		tex_id;
+	double		wall_x;
+	int			tex_id;
 	long		old_time;
 	int			draw_end;
-	double		frame_time;
-	double		wall_x;
 	double		camera_x;
+	double		rot_speed;
 	double		ray_dir_x;
 	double		ray_dir_y;
 	int			draw_start;
+	double		move_speed;
+	double		frame_time;
 	double		side_dist_x;
 	double		side_dist_y;
 	int			line_height;
@@ -103,7 +106,7 @@ typedef struct s_game
 	t_img		img;
 	t_point_d	pos;
 	char		cht;
-	t_raycast 	ray;
+	t_raycast	ray;
 	void		*win;
 	void		*mlx;
 	char		flag;
@@ -113,143 +116,77 @@ typedef struct s_game
 	int			width;
 	int			height;
 	int			**textr;
-	int			**buffer;
 }	t_game;
 
-// Close
-int		win_close(t_game *game);
-int		close_game(t_game *game);
-void	close_img(void *mlx, t_img *img);
+// close_game.c
+void		free_sett(t_sett *sett);
+int			close_game(t_game *game);
+void		close_img(void *mlx, t_img *img);
 
-// Error
-void	error(char *msg);
-void	error_str(char *msg, char *str);
+// error.c
+void		error(char *msg);
+void		error_str(char *msg, char *str);
 
-// Get_file
-char	*read_file(int fd);
-char	**get_file(char *str);
+// get_file.c
+char		*read_file(int fd);
+char		**get_file(char *str);
 
-// Utils
-void	free_max(char **max);
-int		matrix_len(char **max);
-int		max_strlen(char **mtx);
-void	val_img_path(t_game *game, t_img *img);
+// utils.cs
+void		free_max(char **max);
+int			matrix_len(char **max);
+int			max_strlen(char **mtx);
+void		val_img_path(t_game *game, t_img *img);
 
-// Val_file
-int		open_file(char *file);
+// win_init.c
+void		win_init(char **args);
+void		init_vars(t_game *g, t_sett *sett);
 
-// Win_init
-void	win_init(char **args);
-void	init_vars(t_game *g, t_sett *sett);
-int		keypress(int key, t_game *game);
-void	get_img(t_game *g, t_img *img);
-
-// Main
-void	print_matrix(char **mt);
+// main.c
+int			keypress(int key, t_game *game);
+void		print_matrix(char **mt);
 
 // Parsing
-t_sett	parsing(char *str);
+t_sett		parsing(char *str);
+char		**get_map(char **max);
+char		*get_value(char **max, char *str);
+char		*get_value2(char **max, char *str);
+
+// pos.c
 t_point_d	pos(char **map);
-char	**get_map(char **max);
-char	*get_value(char **max, char *str);
-int		val_charater(char c);
-void 	p_direction(t_raycast *ray, char c);
-int 	render_window(t_game *g);
-int		character(char c);
+int			character(char c);
+
+// draw_window.c
+void		clear_window(t_game *g);
+void		draw_background(t_game *g);
+void		create_image(t_game *g, t_img *img);
+void		draw_pixel(t_img *img, int x, int y, int color);
+
+// init_textures.c
+void		get_img(t_game *g, t_img *img);
+void		init_textures(t_game *g, t_img *img);
+
+//ray_cast
+int			render_window(t_game *g);
+void		set_tex_wall_x(t_raycast *ray);
+void		raycasting(t_game *g, t_raycast *ray);
+
+//ray_dda.c
+void		check_hit(t_game *g, t_raycast *ray);
+void		set_steps_and_sidedist(t_raycast *ray);
+
+// r_utils.c
+long		current_time(void);
 t_point_d	create_point(double x, double y);
-long	current_time(void);
-void	player_dir_plane(t_raycast *ray, char c);
-void	init_ray(t_game *g, t_raycast *ray, int x);
-void	cal_perp_wall_dist(t_raycast *ray);
-void	set_draw_limits(t_game *g, t_raycast *ray);
-void	update_frame_time(t_raycast *ray);
-void	set_steps_and_sidedist(t_raycast *ray);
-void	check_hit(t_game *g, t_raycast *ray);
-void	create_image(t_game *g, t_img *img);
-void	draw_pixel(t_img *img, int x, int y, int color);
-void	draw_background(t_game *g);
-void	clear_window(t_game *g);
+void		player_dir_plane(t_raycast *ray, char c);
 
-// Validate
-void	validate_file(char **max, char *str);
-// char	*dell_spaces(char *str);
-void	validate_elements(char **max);
+// ray_draw.c
+int			get_texture_id(t_raycast *ray);
+void		draw_textr(t_game *g, t_raycast *ray, int x);
 
-// treat_map.c.c
-void	treat_map(char **max, char *str);
-void	map_new_line(char *str, char **max);
-void	help_new_line(char *file, int i, char **max);
-void	get_map_to_validate(char *file, int i);
-void	validate_map(char *str, char **max);
-
-// forbiden_char.c
-void	has_player(char **map, char **max);
-void	forbiden_char(char **map, char **max);
-
-// player_in_map.c
-void	player_in_map(char **map, char **max);
-void	only_n(char **map, int i, int j, char **max);
-void	only_s(char **map, int i, int j, char **max);
-void	only_w(char **map, int i, int j, char **max);
-void	only_e(char **map, int i, int j, char **max);
-
-// more_players.c
-void	more_players(char **map, char **max);
-void	more_n(char **map, int i, int j, char **max);
-void	more_s(char **map, int i, int j, char **max);
-void	more_w(char **map, int i, int j, char **max);
-void	more_e(char **map, int i, int j, char **max);
-
-// many_textures.c
-void	many_textures(char **max);
-void	west(char **max);
-void	east(char **max);
-void	south(char **max);
-void	north(char **max);
-
-// good_textures.c
-void	good_textures(char **max);
-void	good_we(char **mat, char *str);
-void	good_ea(char **mat, char *str);
-void	good_so(char **mat, char *str);
-void	good_no(char **mat, char *str);
-
-// textures_path.c
-void	textures_path(char **max);
-void	path_we(char *path, char **max);
-void	path_ea(char *path, char **max);
-void	path_so(char *path, char **max);
-void	path_no(char *path, char **max);
-
-// textures_extencion.c
-void	textures_extencion(char **max);
-void	extencion_we(char *str, char **max);
-void	extencion_ea(char *str, char **max);
-void	extencion_so(char *str, char **max);
-void	extencion_no(char *str, char **max);
-
-// many_colors.c
-char	**split_color(char *str);
-void	many_colors(char **max);
-void	one_floor(char **max);
-void	one_roof(char **max);
-
-// floor_roof.c
-void	floor_roof(char **max);
-void	floor_roof_weird_char(char *floor, char *roof, char **max);
-void	floor_roof_one_space(char *floor, char *roof);
-void	big_nbr_color(char *floor, char *roof);
-char	**split_color(char *str);
-
-// sorrounded_by_1.c
-void	walls_at_edges(char **map, char **max);
-void	inside_map(char **map, char **max);
-void	char_by_char(char **map2, char **map, char **max);
-void	last_char(char **map, char **max);
-int		bigger_line(char **mat);
-
-// help_sorround_by_1.c
-void	middle_lines(char **map, char **max);
-void	last_line(char **mat, char **max);
+// ray_vars.c
+void		update_frame_time(t_raycast *ray);
+void		cal_perp_wall_dist(t_raycast *ray);
+void		set_draw_limits(t_game *g, t_raycast *ray);
+void		init_ray(t_game *g, t_raycast *ray, int x);
 
 #endif

@@ -35,10 +35,10 @@ S_FILES		= ./src/main.c    				\
 			  ./src/win_init.c  			\
 			  ./src/parsing.c  				\
 			  ./src/keyboard.c  			\
-			  ./src/raycast.c  				\
+			  ./src/ray_cast.c  			\
 			  ./src/ray_dda.c  				\
 			  ./src/ray_vars.c  			\
-			  ./src/player.c  				\
+			  ./src/pos.c  					\
 			  ./src/r_utils.c  				\
 			  ./src/validate.c  			\
 			  ./src/treat_map.c				\
@@ -53,6 +53,8 @@ S_FILES		= ./src/main.c    				\
 			  ./src/textures_extencion.c	\
 			  ./src/many_colors.c			\
 			  ./src/floor_roof.c			\
+			  ./src/init_textures.c			\
+			  ./src/ray_draw.c				\
 
 S_OBJ		= $(S_FILES:.c=.o)
 

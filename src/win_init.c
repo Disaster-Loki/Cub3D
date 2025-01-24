@@ -12,21 +12,6 @@
 
 #include "../inc/cub3d.h"
 
-void	get_img(t_game *g, t_img *img)
-{
-	int	x;
-	int	y;
-
-	x = 0;
-	y = 0;
-	img->no = mlx_xpm_file_to_image(g->mlx, g->sett->no, &x, &y);
-	img->so = mlx_xpm_file_to_image(g->mlx, g->sett->so, &x, &y);
-	img->we = mlx_xpm_file_to_image(g->mlx, g->sett->we, &x, &y);
-	img->ea = mlx_xpm_file_to_image(g->mlx, g->sett->ea, &x, &y);
-	img->width = x;
-	img->height = y;
-}
-
 //mlx_get_screen_size(g->mlx, &g->width, &g->height);
 void	init_vars(t_game *g, t_sett *sett)
 {
@@ -35,6 +20,7 @@ void	init_vars(t_game *g, t_sett *sett)
 	g->name = "CUB3D";
 	g->mlx = mlx_init();
 	get_img(g, &g->img);
+	init_textures(g, &g->img);
 	g->pos = pos(g->sett->map);
 	g->cht = g->sett->map[(int)g->pos.y][(int)g->pos.x];
 	g->height = matrix_len(g->sett->map) * g->img.width + 2;
