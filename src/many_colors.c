@@ -14,9 +14,9 @@
 
 char	**help_split_color(char **max, char *str)
 {
-	int	i;
-	int	j;
-	int	f;
+	int		i;
+	int		j;
+	int		f;
 	char	**res;
 
 	i = 0;
@@ -38,9 +38,9 @@ char	**split_color(char *str)
 {
 	char	**res;
 	char	*str2;
-	int	len;
-	int	i;
-	int	j;
+	int		len;
+	int		i;
+	int		j;
 
 	res = ft_split(str, ' ');
 	i = 0;

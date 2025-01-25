@@ -17,7 +17,7 @@ void	only_n(char **map, int i, int j, char **max)
 	while (map[i])
 	{
 		while (map[i][j])
-		{	
+		{
 			if (map[i][j] == 'S' || map[i][j] == 'W' || map[i][j] == 'E')
 			{
 				free_max(map);
@@ -74,7 +74,7 @@ void	only_e(char **map, int i, int j, char **max)
 	while (map[i])
 	{
 		while (map[i][j])
-		{	
+		{
 			if (map[i][j] == 'N' || map[i][j] == 'W' || map[i][j] == 'S')
 			{
 				free_max(map);
