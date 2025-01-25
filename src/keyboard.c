@@ -71,7 +71,7 @@ void	move_player_horizontal(t_game *g, int direc)
 		new_y -= -g->ray.dir.x * g->ray.move_speed;
 	}
 	else if (direc == LEFT)
-	{s
+	{
 		new_x += g->ray.dir.y * g->ray.move_speed;
 		new_y += -g->ray.dir.x * g->ray.move_speed;
 	}
