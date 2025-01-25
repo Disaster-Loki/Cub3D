@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-carv <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 11:57:16 by sde-carv          #+#    #+#             */
-/*   Updated: 2025/01/24 11:57:34 by sde-carv         ###   ########.fr       */
+/*   Updated: 2025/01/25 10:28:35 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	many_textures(char **max);
 void	one_roof(char **max);
 void	one_floor(char **max);
 void	many_colors(char **max);
-char	**split_color(char *str);
 
 // char	*dell_spaces(char *str);
 void	validate_elements(char **max);

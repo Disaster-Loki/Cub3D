@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 22:33:35 by ptchipoc          #+#    #+#             */
-/*   Updated: 2025/01/16 10:55:33 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2025/01/25 10:34:31 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	big_floor_nbr(char *floor, char *roof, char **max)
 
 	res_floor = split_color(floor);
 	i = -1;
-	j = 0;
 	while (res_floor[++i])
 	{
 		j = 0;
@@ -32,7 +31,7 @@ void	big_floor_nbr(char *floor, char *roof, char **max)
 			free(roof);
 			free_max(res_floor);
 			free_max(max);
-			error("Error\nInvalid color for floor\n");
+			error("Error\nNumber too big to floor\n");
 		}
 	}
 	free_max(res_floor);
@@ -46,7 +45,6 @@ void	big_roof_nbr(char *floor, char *roof, char **max)
 
 	res_roof = split_color(roof);
 	i = -1;
-	j = 0;
 	while (res_roof[++i])
 	{
 		j = 0;
@@ -58,7 +56,7 @@ void	big_roof_nbr(char *floor, char *roof, char **max)
 			free(roof);
 			free_max(res_roof);
 			free_max(max);
-			error("Error\nInvalid color for roof\n");
+			error("Error\nNumber too big to roof\n");
 		}
 	}
 	free_max(res_roof);

@@ -6,21 +6,54 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 22:27:32 by ptchipoc          #+#    #+#             */
-/*   Updated: 2025/01/16 10:55:59 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2025/01/25 10:28:11 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
+char	**help_split_color(char **max, char *str)
+{
+	int	i;
+	int	j;
+	int	f;
+	char	**res;
+
+	i = 0;
+	f = 0;
+	while (max[++i])
+	{
+		j = -1;
+		while (max[i][++j])
+			str[f++] = max[i][j];
+	}
+	str[f] = '\0';
+	res = ft_split(str, ',');
+	free_max(max);
+	free(str);
+	return (res);
+}
+
 char	**split_color(char *str)
 {
 	char	**res;
-	char	**res2;
+	char	*str2;
+	int	len;
+	int	i;
+	int	j;
 
 	res = ft_split(str, ' ');
-	res2 = ft_split(res[1], ',');
-	free_max(res);
-	return (res2);
+	i = 0;
+	len = 0;
+	while (res[++i])
+	{
+		j = 0;
+		while (res[i][j])
+			j++;
+		len += j;
+	}
+	str2 = malloc(sizeof(char) * (len + 1));
+	return (help_split_color(res, str2));
 }
 
 void	one_roof(char **max)
