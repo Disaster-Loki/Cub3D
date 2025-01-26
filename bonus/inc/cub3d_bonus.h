@@ -31,6 +31,7 @@
 # define S_LEFT 65363
 # define S_RIGHT 65361
 # define EPSILON 0.1
+# define SPACE 32
 
 typedef struct s_point
 {
@@ -203,5 +204,8 @@ void		rotate_view(t_game *g, t_raycast *ray, double speed);
 
 // mini_map.c
 void    	mini_map(t_game *g);
+
+int mouse_init(int x, int y, t_game *g);
+int mouse_move(int x, int y, t_game *g);
 
 #endif

@@ -24,7 +24,7 @@ void	rotate_view(t_game *g, t_raycast *ray, double speed)
 	old_plane_x = ray->plane.x;
 	ray->plane.y = old_plane_x * sin(speed) + ray->plane.y * cos(speed);
 	ray->plane.x = ray->plane.x * cos(speed) - ray->plane.y * sin(speed);
-	render_window(g);
+	//render_window(g);
 }
 
 int	valid_move(t_game *g, int new_x, int new_y)
@@ -34,6 +34,12 @@ int	valid_move(t_game *g, int new_x, int new_y)
 	if (g->sett->map[new_y][(int)g->pos.x] == '1')
 		return (0);
 	if (g->sett->map[new_y][new_x] == '1')
+		return (0);
+	if (g->sett->map[(int)g->pos.y][new_x] == 'X')
+		return (0);
+	if (g->sett->map[new_y][(int)g->pos.x] == 'X')
+		return (0);
+	if (g->sett->map[new_y][new_x] == 'X')
 		return (0);
 	return (1);
 }

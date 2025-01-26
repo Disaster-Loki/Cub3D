@@ -89,6 +89,7 @@ S_FILES_BONUS	= ./bonus/src/main_bonus.c						\
 			      ./bonus/src/ray_draw_bonus.c					\
 			      ./bonus/src/move_player_bonus.c				\
 			      ./bonus/src/mini_map_bonus.c					\
+			      ./bonus/src/mouse_press_bonus.c				\
 
 S_OBJ			= $(S_FILES:.c=.o)
 S_OBJ_BS		= $(S_FILES_BONUS:.c=.o)

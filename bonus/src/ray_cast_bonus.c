@@ -52,7 +52,6 @@ int	render_window(t_game *g)
 	//clear_window(g);
 	draw_background(g);
 	raycasting(g, &g->ray);
-	mlx_mouse_move(g->mlx, g->win, g->width / 2, g->height / 2);
 	mini_map(g);
 	return (0);
 }

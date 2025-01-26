@@ -52,4 +52,9 @@ void	check_hit(t_game *g, t_raycast *ray)
 	}
 	if (g->sett->map[ray->map_y][ray->map_x] == '1')
 		ray->hit = 1;
+	if (g->sett->map[ray->map_y][ray->map_x] == 'X')
+	{
+		ray->hit = 2;
+		ray->wall_x *= 0.5;
+	}
 }
