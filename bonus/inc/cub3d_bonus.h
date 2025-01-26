@@ -10,18 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
 
-# include "file.h"
 # include <math.h>
 # include <fcntl.h>
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <sys/time.h>
-# include "../libft/inc/libft.h"
-# include "../minilibx-linux/mlx.h"
+# include "file_bonus.h"
+# include "../../libft/inc/libft.h"
+# include "../../minilibx-linux/mlx.h"
 
 # define UP 119
 # define DOWN 115
@@ -200,5 +200,8 @@ void		move_right(t_game *g);
 int			keypress(int key, t_game *game);
 int			valid_move(t_game *g, int new_x, int new_y);
 void		rotate_view(t_game *g, t_raycast *ray, double speed);
+
+// mini_map.c
+void    	mini_map(t_game *g);
 
 #endif

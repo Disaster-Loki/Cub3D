@@ -11,6 +11,7 @@
 # **************************************************************************** #
 
 NAME		= cub3D
+BONUS		= cub3d_bonus
  
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror
@@ -55,8 +56,42 @@ S_FILES		= ./src/main.c    				\
 			  ./src/floor_roof.c			\
 			  ./src/init_textures.c			\
 			  ./src/ray_draw.c				\
+			  ./src/move_player.c			\
 
-S_OBJ		= $(S_FILES:.c=.o)
+S_FILES_BONUS	= ./bonus/src/main_bonus.c						\
+			  	  ./bonus/src/close_game_bonus.c  				\
+			      ./bonus/src/error_bonus.c  					\
+			      ./bonus/src/utils_bonus.c  					\
+			      ./bonus/src/draw_window_bonus.c  				\
+			      ./bonus/src/get_file_bonus.c  				\
+			      ./bonus/src/win_init_bonus.c  				\
+			      ./bonus/src/parsing_bonus.c  					\
+			      ./bonus/src/keyboard_bonus.c 	 				\
+			      ./bonus/src/ray_cast_bonus.c  				\
+			      ./bonus/src/ray_dda_bonus.c  					\
+			      ./bonus/src/ray_vars_bonus.c  				\
+			      ./bonus/src/pos_bonus.c  						\
+			      ./bonus/src/r_utils_bonus.c  					\
+			      ./bonus/src/validate_bonus.c  				\
+			      ./bonus/src/treat_map_bonus.c					\
+			      ./bonus/src/forbiden_char_bonus.c				\
+			      ./bonus/src/player_in_map_bonus.c				\
+			      ./bonus/src/more_players_bonus.c				\
+			      ./bonus/src/sorrounded_by_1_bonus.c			\
+			      ./bonus/src/help_sorround_by_1_bonus.c 		\
+			      ./bonus/src/many_textures_bonus.c				\
+			      ./bonus/src/good_textures_bonus.c				\
+			      ./bonus/src/textures_path_bonus.c				\
+			      ./bonus/src/textures_extencion_bonus.c		\
+			      ./bonus/src/many_colors_bonus.c				\
+			      ./bonus/src/floor_roof_bonus.c				\
+			      ./bonus/src/init_textures_bonus.c				\
+			      ./bonus/src/ray_draw_bonus.c					\
+			      ./bonus/src/move_player_bonus.c				\
+			      ./bonus/src/mini_map_bonus.c					\
+
+S_OBJ			= $(S_FILES:.c=.o)
+S_OBJ_BS		= $(S_FILES_BONUS:.c=.o)
 
 all:	$(NAME)
 
@@ -67,17 +102,30 @@ $(NAME): $(S_OBJ)
 		 clear
 		 @echo "$(GREEN) MANDATORY - COMPILATION COMPLETE$(RESET)"	
 
+bonus:   $(BONUS)
+
+$(BONUS): $(S_OBJ_BS)
+		 $(MAKE) -C $(L_DIR)
+		 $(MAKE) -C $(M_DIR)
+		 $(CC) $(CFLAGS) -o $(BONUS) $(S_OBJ_BS) $(LIBFT) $(M_libx)
+		 clear
+		 @echo "$(GREEN) BONUS - COMPILATION COMPLETE$(RESET)"
+
 clean:
 		@$(MAKE) clean -C $(L_DIR)
 		@$(MAKE) clean -C $(M_DIR)
 		rm -f $(S_OBJ)
+		rm -f $(S_OBJ_BS)
 		clear
 		@echo "$(ORANGE) CLEANING THE OBJECTS$(RESET)"
 
 fclean: clean
 		@$(MAKE) fclean -C $(L_DIR)
 		rm -f $(NAME)
+		rm -f $(BONUS)
 		clear
 		@echo "$(RED) CLEARING ALL FILES$(RESET)"
 
 re: fclean all
+
+re_bs: fclean bonus
