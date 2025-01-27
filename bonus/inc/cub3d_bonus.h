@@ -45,6 +45,15 @@ typedef struct s_point_d
 	double	y;
 }	t_point_d;
 
+typedef struct s_door
+{
+	int		open;
+	int		new_x;
+	int		new_y;
+	long	is_open;
+	long	is_closed;
+}	t_door;
+
 typedef struct s_img
 {
 	int		bpp;
@@ -113,6 +122,7 @@ typedef struct s_game
 	void		*win;
 	void		*mlx;
 	char		flag;
+	t_door		door;
 	char		**map;
 	char		*name;
 	t_sett		*sett;
@@ -205,7 +215,13 @@ void		rotate_view(t_game *g, t_raycast *ray, double speed);
 // mini_map.c
 void    	mini_map(t_game *g);
 
+// mouse_press_bonus.c
 int mouse_init(int x, int y, t_game *g);
 int mouse_move(int x, int y, t_game *g);
+
+// door_bonus.c
+void	close_door(t_game *g);
+void	open_door(t_game *g);
+int		valid_move_door(t_game *g, int new_x, int new_y);
 
 #endif

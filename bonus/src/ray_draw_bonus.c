@@ -43,17 +43,16 @@ void	draw_textr(t_game *g, t_raycast *ray, int x)
 	{
 		ray->tex_y = (int)tex_pos & (g->img.height - 1);
 		tex_pos += step;
+
 		if (ray->hit == 2)
 		{
 			if (i < ray->draw_start + border_size || i > ray->draw_end - border_size)
-				color = 0x1E90FF;
+				color = 0x1E90FF; // Borda da porta (azul claro)
 			else
-				color = 0x00008B;
+				color = 0x00008B; // Porta (azul escuro)
 		}
 		else
-		{
 			color = g->textr[ray->tex_id][g->img.height * ray->tex_y + ray->tex_x];
-		}
 		draw_pixel(&g->img, x, i, color);
 	}
 }

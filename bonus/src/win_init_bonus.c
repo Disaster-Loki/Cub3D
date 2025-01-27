@@ -17,6 +17,9 @@ void	init_vars(t_game *g, t_sett *sett)
 {
 	g->flag = 0;
 	g->sett = sett;
+	g->door.open = 0;
+	g->door.new_x = 0;
+	g->door.new_y = 0;
 	g->name = "CUB3D";
 	g->mlx = mlx_init();
 	get_img(g, &g->img);

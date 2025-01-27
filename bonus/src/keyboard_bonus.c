@@ -24,22 +24,19 @@ void	rotate_view(t_game *g, t_raycast *ray, double speed)
 	old_plane_x = ray->plane.x;
 	ray->plane.y = old_plane_x * sin(speed) + ray->plane.y * cos(speed);
 	ray->plane.x = ray->plane.x * cos(speed) - ray->plane.y * sin(speed);
-	//render_window(g);
 }
 
 int	valid_move(t_game *g, int new_x, int new_y)
 {
+	if (new_x < 0 || new_x >= g->width || new_y < 0 || new_y >= g->height)
+		return (0);
 	if (g->sett->map[(int)g->pos.y][new_x] == '1')
 		return (0);
 	if (g->sett->map[new_y][(int)g->pos.x] == '1')
 		return (0);
 	if (g->sett->map[new_y][new_x] == '1')
 		return (0);
-	if (g->sett->map[(int)g->pos.y][new_x] == 'X')
-		return (0);
-	if (g->sett->map[new_y][(int)g->pos.x] == 'X')
-		return (0);
-	if (g->sett->map[new_y][new_x] == 'X')
+	if (!valid_move_door(g, new_x, new_y))
 		return (0);
 	return (1);
 }
@@ -58,6 +55,8 @@ int	keypress(int key, t_game *g)
 		rotate_view(g, &g->ray, -g->ray.rot_speed);
 	if (key == S_LEFT)
 		rotate_view(g, &g->ray, g->ray.rot_speed);
+	if (key == SPACE)
+		open_door(g);
 	if (key == ESC)
 		close_game(g);
 	return (1);

@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME		= cub3D
-BONUS		= cub3d_bonus
+BONUS		= cub3D_bonus
  
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror
@@ -90,6 +90,7 @@ S_FILES_BONUS	= ./bonus/src/main_bonus.c						\
 			      ./bonus/src/move_player_bonus.c				\
 			      ./bonus/src/mini_map_bonus.c					\
 			      ./bonus/src/mouse_press_bonus.c				\
+			      ./bonus/src/door_bonus.c						\
 
 S_OBJ			= $(S_FILES:.c=.o)
 S_OBJ_BS		= $(S_FILES_BONUS:.c=.o)
