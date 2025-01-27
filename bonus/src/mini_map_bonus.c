@@ -61,7 +61,7 @@ void	draw_player(t_img *img, double player_x, double player_y)
 	}
 }
 
-int	valid_min_map(t_game *g, int map_x, int map_y)
+int	ft_if(t_game *g, int map_x, int map_y)
 {
 	return (g->sett->map[map_y][map_x]
 			&& map_x < (int)(g->width / TILE_SIZE));
@@ -80,7 +80,7 @@ void	mini_map(t_game *g)
 	{
 		map_x = 0;
 		screen_x = 0;
-		while (valid_min_map(g, map_x, map_y))
+		while (ft_if(g, map_x, map_y))
 		{
 			if (g->sett->map[map_y][map_x] == '1')
 				draw_square(&g->img, screen_x, screen_y, WALL_COLOR);
