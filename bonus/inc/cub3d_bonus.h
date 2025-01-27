@@ -212,8 +212,10 @@ int			keypress(int key, t_game *game);
 int			valid_move(t_game *g, int new_x, int new_y);
 void		rotate_view(t_game *g, t_raycast *ray, double speed);
 
-// mini_map.c
-void    	mini_map(t_game *g);
+// mini_map_bonus.c
+void		mini_map(t_game *g);
+void		draw_square(t_img *img, int x, int y, int color);
+//void		draw_player(t_img *img, int player_x, int player_y);
 
 // mouse_press_bonus.c
 int mouse_init(int x, int y, t_game *g);
@@ -223,5 +225,6 @@ int mouse_move(int x, int y, t_game *g);
 void	close_door(t_game *g);
 void	open_door(t_game *g);
 int		valid_move_door(t_game *g, int new_x, int new_y);
+
 
 #endif

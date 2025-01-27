@@ -49,7 +49,7 @@ void	raycasting(t_game *g, t_raycast *ray)
 
 int	render_window(t_game *g)
 {
-	//clear_window(g);
+	clear_window(g);
 	draw_background(g);
 	close_door(g);
 	raycasting(g, &g->ray);

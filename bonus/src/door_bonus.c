@@ -52,6 +52,8 @@ void	open_door(t_game *g)
 void	close_door(t_game *g)
 {
 	g->door.is_closed =  current_time() - g->door.is_open;
+	if (g->sett->map[g->door.new_y][g->door.new_x] != '0')
+		return ;
 	if (g->door.open == 1 && g->door.is_closed >= 7000)
 	{
 		printf("Close the door\n");
