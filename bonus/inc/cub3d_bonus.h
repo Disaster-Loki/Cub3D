@@ -32,6 +32,8 @@
 # define S_RIGHT 65361
 # define EPSILON 0.1
 # define SPACE 32
+# define ENTER 36
+# define RIGHT_MOUSE 2
 
 typedef struct s_point
 {
@@ -82,8 +84,10 @@ typedef struct s_sett
 
 typedef struct s_sprite
 {
-	void	*sprite[3];
+	int		state;
 	int		**s_textr;
+	int		anim_frame;
+	void	*sprite[4];
 }	t_sprite;
 
 
@@ -136,6 +140,7 @@ typedef struct s_game
 	char		*name;
 	t_sett		*sett;
 	int			width;
+	t_sprite	sprite;
 	int			height;
 	int			**textr;
 	int			dr_count;
@@ -237,6 +242,12 @@ void	open_door(t_game *g);
 void	close_door(t_game *g);
 t_door  *door_coordinates(t_game *g, char **map);
 int		valid_move_door(t_game *g, int new_x, int new_y);
+
+//sprite_bonus.c
+void draw_sprite(t_game *g, t_sprite *sp);
+void update_sprite_state(t_game *g, t_sprite *sp);
+void init_textr_sprite(t_sprite *sp, t_img *img);
+void load_textures_sprite(t_game *g, t_sprite *sp);
 
 
 #endif
