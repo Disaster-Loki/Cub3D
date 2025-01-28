@@ -16,49 +16,115 @@ int	valid_move_door(t_game *g, int new_x, int new_y)
 {
 	if (g->sett->map[(int)g->pos.y][new_x] == 'X')
 	{
-		g->door.new_x = new_x;
-		g->door.new_y = g->pos.y;
+		g->doors.x = new_x;
+		g->doors.y = g->pos.y;
 		return (0);
 	}
 	if (g->sett->map[new_y][(int)g->pos.x] == 'X')
 	{
-		g->door.new_x = g->pos.x;
-		g->door.new_y = new_y;
+		g->doors.x = g->pos.x;
+		g->doors.y = new_y;
 		return (0);
 	}
 	if (g->sett->map[new_y][new_x] == 'X')
 	{
-		g->door.new_x = new_x;
-		g->door.new_y = new_y;
+		g->doors.x = new_x;
+		g->doors.y = new_y;
 		return (0);
 	}
 	return (1);
 }
 
-void	open_door(t_game *g)
+int	found_x(char **map)
 {
-	if (g->door.new_x == 0 && !g->door.new_y == 0)
-		return ;
-	if (g->sett->map[g->door.new_y][g->door.new_x] == 'X' && g->door.open == 0)
+	int	i;
+	int	j;
+	int	len;
+
+	i = -1;
+	len = 0;
+	while (map[++i])
 	{
-		printf("Open the door\n");
-		g->door.open = 1;
-		g->door.is_open = current_time();
-		g->sett->map[g->door.new_y][g->door.new_x] = '0';
-		//g->sett->map[g->door.new_y][g->door.new_x + 1] = 'X';
+		j = -1;
+		while (map[i][++j])
+		{
+			if (map[i][j] == 'X')
+				++len;
+		}
+	}
+	return (len);
+}
+
+t_door	*door_coordinates(char **map)
+{
+	int		x;
+	int		y;
+	int		i;
+	t_door	*door;
+
+	y = -1;
+	i = 0;
+	door = malloc(sizeof(t_door) * found_x(map));
+	while (map[++y])
+	{
+		x = -1;
+		while (map[y][++x])
+		{
+			if (map[y][x] == 'X')
+			{
+				door[i].new_x = x;
+				door[i].new_y = y;
+				i++;
+			}
+		}
+	}
+	return (door);
+}
+
+void	hand_index(t_game *g, t_door *door)
+{
+	int	i;
+
+	i = 0;
+	printf("zzzzzz\n");
+	if (g->doors.x == 0 && g->doors.y == 0)
+		return ;
+	while (i < found_x(g->sett->map))
+	{
+		door[i].open = 0;
+		if ((g->doors.x == door[i].new_x)
+			&& (g->doors.y == door[i].new_y))
+			{
+				g->index = i;
+				return ;
+			}
 	}
 }
 
-void	close_door(t_game *g)
+void	open_door(t_game *g, int index)
 {
-	g->door.is_closed =  current_time() - g->door.is_open;
-	if (g->sett->map[g->door.new_y][g->door.new_x] != '0')
+	if (g->doors.x == 0 && g->doors.y == 0)
 		return ;
-	if (g->door.open == 1 && g->door.is_closed >= 7000)
+	if (g->sett->map[g->doors.y][g->doors.x] == 'X' && g->door[index].open == 0)
+	{
+		printf("Open the door\n");
+		g->door[index].open = 1;
+		g->door[index].is_open = current_time();
+		g->sett->map[g->door[index].new_y][g->door[index].new_x] = '0';
+	}
+}
+
+void	close_door(t_game *g, int index)
+{
+	if (g->doors.x == 0 && g->doors.y == 0)
+		return ;
+	g->door[index].is_closed =  current_time() - g->door[index].is_open;
+	if (g->sett->map[g->doors.y][g->doors.x] != '0')
+		return ;
+	if (g->door[index].open == 1 && g->door[index].is_closed >= 7000)
 	{
 		printf("Close the door\n");
-		g->door.open = 0;
-		g->sett->map[g->door.new_y][g->door.new_x] = 'X';
-		//g->sett->map[g->door.new_y][g->door.new_x + 1] = '1';
+		g->door[index].open = 0;
+		g->sett->map[g->door[index].new_y][g->door[index].new_x] = 'X';
 	}
 }

@@ -117,12 +117,14 @@ typedef struct s_game
 {
 	t_img		img;
 	t_point_d	pos;
+	t_point		doors;
 	char		cht;
 	t_raycast	ray;
 	void		*win;
 	void		*mlx;
 	char		flag;
-	t_door		door;
+	t_door		*door;
+	int			index;
 	char		**map;
 	char		*name;
 	t_sett		*sett;
@@ -222,8 +224,11 @@ int mouse_init(int x, int y, t_game *g);
 int mouse_move(int x, int y, t_game *g);
 
 // door_bonus.c
-void	close_door(t_game *g);
-void	open_door(t_game *g);
+int		found_x(char **map);
+t_door	*door_coordinates(char **map);
+void	open_door(t_game *g, int index);
+void	close_door(t_game *g, int index);
+void	hand_index(t_game *g, t_door *door);
 int		valid_move_door(t_game *g, int new_x, int new_y);
 
 

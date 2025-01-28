@@ -56,7 +56,7 @@ int	keypress(int key, t_game *g)
 	if (key == S_LEFT)
 		rotate_view(g, &g->ray, g->ray.rot_speed);
 	if (key == SPACE)
-		open_door(g);
+		open_door(g, g->index);
 	if (key == ESC)
 		close_game(g);
 	return (1);

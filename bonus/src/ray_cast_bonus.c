@@ -51,7 +51,10 @@ int	render_window(t_game *g)
 {
 	clear_window(g);
 	draw_background(g);
-	close_door(g);
+	hand_index(g, g->door);
+	printf("test 01\n");
+	close_door(g, g->index);
+	printf("test 02\n");
 	raycasting(g, &g->ray);
 	mini_map(g);
 	return (0);
