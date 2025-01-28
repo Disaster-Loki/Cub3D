@@ -80,6 +80,13 @@ typedef struct s_sett
 	int		c_floor;
 }	t_sett;
 
+typedef struct s_sprite
+{
+	void	*sprite[3];
+	int		**s_textr;
+}	t_sprite;
+
+
 typedef struct s_raycast
 {
 	t_point_d	pos;
@@ -117,7 +124,6 @@ typedef struct s_game
 {
 	t_img		img;
 	t_point_d	pos;
-	t_point		doors;
 	char		cht;
 	t_raycast	ray;
 	void		*win;
@@ -125,12 +131,14 @@ typedef struct s_game
 	char		flag;
 	t_door		*door;
 	int			index;
+	t_point		doors;
 	char		**map;
 	char		*name;
 	t_sett		*sett;
 	int			width;
 	int			height;
 	int			**textr;
+	int			dr_count;
 }	t_game;
 
 // close_game.c
@@ -225,10 +233,9 @@ int mouse_move(int x, int y, t_game *g);
 
 // door_bonus.c
 int		found_x(char **map);
-t_door	*door_coordinates(char **map);
-void	open_door(t_game *g, int index);
-void	close_door(t_game *g, int index);
-void	hand_index(t_game *g, t_door *door);
+void	open_door(t_game *g);
+void	close_door(t_game *g);
+t_door  *door_coordinates(t_game *g, char **map);
 int		valid_move_door(t_game *g, int new_x, int new_y);
 
 

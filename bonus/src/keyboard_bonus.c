@@ -44,7 +44,7 @@ int	valid_move(t_game *g, int new_x, int new_y)
 int	keypress(int key, t_game *g)
 {
 	if (key == UP)
-		move_up(g); 
+		move_up(g);
 	if (key == DOWN)
 		move_down(g);
 	if (key == LEFT)
@@ -56,7 +56,7 @@ int	keypress(int key, t_game *g)
 	if (key == S_LEFT)
 		rotate_view(g, &g->ray, g->ray.rot_speed);
 	if (key == SPACE)
-		open_door(g, g->index);
+		open_door(g);
 	if (key == ESC)
 		close_game(g);
 	return (1);

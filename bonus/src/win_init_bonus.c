@@ -24,12 +24,15 @@ void	init_vars(t_game *g, t_sett *sett)
 	get_img(g, &g->img);
 	init_textures(g, &g->img);
 	g->pos = pos(g->sett->map);
-	g->door = door_coordinates(g->sett->map);
+	g->pos = (t_point_d){g->pos.x + 0.5, g->pos.y + 0.5};
+	g->dr_count = found_x(g->sett->map);
+	g->door = door_coordinates(g, g->sett->map);
 	g->cht = g->sett->map[(int)g->pos.y][(int)g->pos.x];
 	g->height = matrix_len(g->sett->map) * g->img.width + 2;
 	g->width = max_strlen(g->sett->map) * g->img.height + 2;
 }
 
+//mlx_mouse_hook(g.win, mouse_init, &g);
 void	win_init(char **args)
 {
 	t_game	g;
@@ -37,9 +40,9 @@ void	win_init(char **args)
 
 	sett = parsing(args[1]);
 	init_vars(&g, &sett);
+	player_dir_plane(&g.ray, g.cht);
 	g.win = mlx_new_window(g.mlx, g.width, g.height, g.name);
 	create_image(&g, &g.img);
-	//mlx_mouse_hook(g.win, mouse_init, &g);
 	mlx_loop_hook(g.mlx, render_window, &g);
 	mlx_hook(g.win, 02, 1L << 0, keypress, &g);
 	mlx_hook(g.win, 6, 1L << 6, mouse_move, &g);

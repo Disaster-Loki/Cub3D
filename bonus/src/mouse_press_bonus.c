@@ -12,27 +12,26 @@
 
 #include "../inc/cub3d_bonus.h"
 
-int mouse_init(int x, int y, t_game *g)
+int	mouse_init(int x, int y, t_game *g)
 {
-    (void)x;
-    (void)y;
-    (void)g;
-    printf("x: %d\n", x);
-    return (0);
+	(void)x;
+	(void)y;
+	(void)g;
+	printf("x: %d\n", x);
+	return (0);
 }
 
-int mouse_move(int x, int y, t_game *g)
+int	mouse_move(int x, int y, t_game *g)
 {
-    static int prev_x = 0;
+	static int	prev_x = 0;
 
-    (void)y;
-    if (prev_x == 0)
-        prev_x = g->width / 2;
-    if (x > prev_x)
-        rotate_view(g, &g->ray, g->ray.rot_speed);
-    else if (x < prev_x)
-        rotate_view(g, &g->ray, -g->ray.rot_speed);
-    prev_x = x;
-    return (0);
+	(void)y;
+	if (prev_x == 0)
+		prev_x = g->width / 2;
+	if (x > prev_x)
+		rotate_view(g, &g->ray, g->ray.rot_speed);
+	else if (x < prev_x)
+		rotate_view(g, &g->ray, -g->ray.rot_speed);
+	prev_x = x;
+	return (0);
 }
-

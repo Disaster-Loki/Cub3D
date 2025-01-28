@@ -28,9 +28,7 @@ void	raycasting(t_game *g, t_raycast *ray)
 
 	x = -1;
 	ray->time = current_time();
-	if (!g->flag)
-		player_dir_plane(ray, g->cht);
-	ray->pos = create_point(g->pos.x, g->pos.y);
+	ray->pos = g->pos;
 	while (++x < g->width)
 	{
 		init_ray(g, ray, x);
@@ -51,10 +49,7 @@ int	render_window(t_game *g)
 {
 	clear_window(g);
 	draw_background(g);
-	hand_index(g, g->door);
-	printf("test 01\n");
-	close_door(g, g->index);
-	printf("test 02\n");
+	close_door(g);
 	raycasting(g, &g->ray);
 	mini_map(g);
 	return (0);

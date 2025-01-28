@@ -43,7 +43,6 @@ void	draw_textr(t_game *g, t_raycast *ray, int x)
 	{
 		ray->tex_y = (int)tex_pos & (g->img.height - 1);
 		tex_pos += step;
-
 		if (ray->hit == 2)
 		{
 			if (i < ray->draw_start + border_size || i > ray->draw_end - border_size)
