@@ -42,7 +42,6 @@ void	raycasting(t_game *g, t_raycast *ray)
 		draw_textr(g, ray, x);
 	}
 	update_frame_time(ray);
-	mlx_put_image_to_window(g->mlx, g->win, g->img.ptr, 0, 0);
 }
 
 int	render_window(t_game *g)
@@ -52,5 +51,7 @@ int	render_window(t_game *g)
 	close_door(g);
 	raycasting(g, &g->ray);
 	mini_map(g);
+	draw_sprites(g, &g->sprite);
+	mlx_put_image_to_window(g->mlx, g->win, g->img.ptr, 0, 0);
 	return (0);
 }

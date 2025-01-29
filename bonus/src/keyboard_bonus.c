@@ -17,7 +17,7 @@ void	rotate_view(t_game *g, t_raycast *ray, double speed)
 	double	old_dir_x;
 	double	old_plane_x;
 
-	g->flag = 1;
+	g->flag = 0;
 	old_dir_x = ray->dir.x;
 	ray->dir.y = old_dir_x * sin(speed) + ray->dir.y * cos(speed);
 	ray->dir.x = ray->dir.x * cos(speed) - ray->dir.y * sin(speed);

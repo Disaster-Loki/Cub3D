@@ -85,11 +85,17 @@ typedef struct s_sett
 typedef struct s_sprite
 {
 	int		state;
+	int		frames;
+	int		width;
+	int		height;
+	int		count;
 	int		**s_textr;
-	int		anim_frame;
-	void	*sprite[4];
+	void	*sprite[2];
+	t_point_d	*pos;
+	//t_point_d	pos;
+	t_point_d	dir;
+	t_point_d	plane;
 }	t_sprite;
-
 
 typedef struct s_raycast
 {
@@ -144,6 +150,7 @@ typedef struct s_game
 	int			height;
 	int			**textr;
 	int			dr_count;
+	int			frame;
 }	t_game;
 
 // close_game.c
@@ -244,10 +251,9 @@ t_door  *door_coordinates(t_game *g, char **map);
 int		valid_move_door(t_game *g, int new_x, int new_y);
 
 //sprite_bonus.c
-void draw_sprite(t_game *g, t_sprite *sp);
-void update_sprite_state(t_game *g, t_sprite *sp);
-void init_textr_sprite(t_sprite *sp, t_img *img);
-void load_textures_sprite(t_game *g, t_sprite *sp);
+void 	draw_sprites(t_game *g, t_sprite *sp);
+void	get_img_sprite(t_game *g, t_sprite *sp);
+void	init_textures_sprinte(t_sprite *sp, t_img *img);
 
 
 #endif
