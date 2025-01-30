@@ -46,13 +46,14 @@ void	raycasting(t_game *g, t_raycast *ray)
 
 int	render_window(t_game *g)
 {
-	printf("Seba \n");
 	clear_window(g);
 	draw_background(g);
 	close_door(g);
 	raycasting(g, &g->ray);
 	mini_map(g);
-	//draw_sprites(g, &g->spt);
+	draw_sprites(g, &g->spt);
 	mlx_put_image_to_window(g->mlx, g->win, g->img.ptr, 0, 0);
+	if (g->spt.frame == 1)
+		stop_sprite(&g->spt);
 	return (0);
 }

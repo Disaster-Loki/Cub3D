@@ -248,6 +248,7 @@ t_door  *door_coordinates(t_game *g, char **map);
 int		valid_move_door(t_game *g, int new_x, int new_y);
 
 //sprite_bonus.c
+void	stop_sprite(t_sprite *sp);
 void 	draw_sprites(t_game *g, t_sprite *sp);
 void	get_img_sprite(t_game *g, t_sprite *sp);
 void 	init_textures_sprite(t_sprite *sp, t_img *img);

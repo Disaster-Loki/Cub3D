@@ -16,13 +16,16 @@ void get_img_sprite(t_game *g, t_sprite *sp)
 {
     int x = 0, y = 0;
     sp->sprite[0] = mlx_xpm_file_to_image(g->mlx, "textures/gun1.xpm", &x, &y);
+    sp->width[0] = x;
+    sp->height[0] = y;
+    sp->sprite[1] = mlx_xpm_file_to_image(g->mlx, "textures/gun2.xpm", &x, &y);
+    sp->width[1] = x;
+    sp->height[1] = y;
     if (!sp->sprite[0])
     {
         printf("Erro: Falha ao carregar a textura!\n");
         exit(1);
     }
-    sp->width[0] = x;
-    sp->height[0] = y;
 }
 
 void init_textures_sprite(t_sprite *sp, t_img *img)
@@ -34,6 +37,7 @@ void init_textures_sprite(t_sprite *sp, t_img *img)
         exit(1);
     }
     sp->s_textr[0] = (int *)mlx_get_data_addr(sp->sprite[0], &img->bpp, &img->line_length, &img->endian);
+    sp->s_textr[1] = (int *)mlx_get_data_addr(sp->sprite[1], &img->bpp, &img->line_length, &img->endian);
     if (!sp->s_textr[0])
     {
         printf("Erro: Falha ao obter dados da textura!\n");
@@ -75,36 +79,38 @@ int adjust_brightness(int color, float factor)
     return (r << 16) | (g << 8) | b;
 }
 
-void	stop_offset(t_sprite *sp)
+void	stop_sprite(t_sprite *sp)
 {
-	usleep(1000);
-	sp->offset_y = 0;
+	usleep(2000);
+	sp->frame = 0;
 }
 
 void draw_sprites(t_game *g, t_sprite *sp)
 {
+    int index = sp->frame;
+    printf("Index = %d\n", index);
     float scale = 1.6;
     int x, y, tex_x, tex_y, color;
-    int new_width = sp->width[0] * scale;
-    int new_height = sp->height[0] * scale + sp->offset_y;
+    int new_width = sp->width[index] * scale;
+    int new_height = sp->height[index] * scale + sp->offset_y;
     int screen_x = (g->width - new_width) / 2;
     int screen_y = g->height - new_height;
-    char *texture_data = (char *)sp->s_textr[0];
+    char *texture_data = (char *)sp->s_textr[index];
 
     y = 0;
     while (y < new_height)
     {
-        tex_y = (y * sp->height[0]) / new_height;
+        tex_y = (y * sp->height[index]) / new_height;
         x = 0;
         while (x < new_width)
         {
-            tex_x = (x * sp->width[0]) / new_width;
-            color = *(int *)(texture_data + (tex_y * sp->width[0] + tex_x) * (g->img.bpp / 8));
+            tex_x = (x * sp->width[index]) / new_width;
+            color = *(int *)(texture_data + (tex_y * sp->width[index] + tex_x) * (g->img.bpp / 8));
 
             if ((color & 0xFFFFFF) != 0x000000)
             {
                 float brightness = 1.0;
-                if (tex_x < 5 || tex_x > sp->width[0] - 5 || tex_y < 5 || tex_y > sp->height[0] - 5)
+                if (tex_x < 5 || tex_x > sp->width[index] - 5 || tex_y < 5 || tex_y > sp->height[index] - 5)
                     brightness = 1.5;
                 color = adjust_brightness(color, brightness);
                 color = enhance_black(color, 0.9);
