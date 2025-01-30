@@ -57,6 +57,8 @@ int	keypress(int key, t_game *g)
 		rotate_view(g, &g->ray, g->ray.rot_speed);
 	if (key == SPACE)
 		open_door(g);
+	if (key == ENTER || key == RIGHT_MOUSE)
+		g->spt.frame = 1;
 	if (key == ESC)
 		close_game(g);
 	return (1);

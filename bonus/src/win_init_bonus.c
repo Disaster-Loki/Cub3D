@@ -22,7 +22,9 @@ void	init_vars(t_game *g, t_sett *sett)
 	g->doors.y = 0;
 	g->name = "CUB3D";
 	g->mlx = mlx_init();
-	g->sprite.state = 0;
+	g->spt.state = 0;
+	g->spt.frame = 0;
+	g->spt.offset_y = 0;
 	get_img(g, &g->img);
 	init_textures(g, &g->img);
 	g->pos = pos(g->sett->map);
@@ -32,8 +34,8 @@ void	init_vars(t_game *g, t_sett *sett)
 	g->cht = g->sett->map[(int)g->pos.y][(int)g->pos.x];
 	g->height = matrix_len(g->sett->map) * g->img.width + 2;
 	g->width = max_strlen(g->sett->map) * g->img.height + 2;
-	get_img_sprite(g, &g->sprite);
-	init_textures_sprinte(&g->sprite, &g->img);
+	get_img_sprite(g, &g->spt);
+	init_textures_sprite(&g->spt, &g->img);
 }
 
 //mlx_mouse_hook(g.win, mouse_init, &g);

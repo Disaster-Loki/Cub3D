@@ -32,7 +32,7 @@
 # define S_RIGHT 65361
 # define EPSILON 0.1
 # define SPACE 32
-# define ENTER 36
+# define ENTER 65293
 # define RIGHT_MOUSE 2
 
 typedef struct s_point
@@ -85,16 +85,13 @@ typedef struct s_sett
 typedef struct s_sprite
 {
 	int		state;
-	int		frames;
-	int		width;
-	int		height;
-	int		count;
+	int		width[2];
+	int		frame;
+	int		height[2];
+	long	timer;
+	int     offset_y;
 	int		**s_textr;
 	void	*sprite[2];
-	t_point_d	*pos;
-	//t_point_d	pos;
-	t_point_d	dir;
-	t_point_d	plane;
 }	t_sprite;
 
 typedef struct s_raycast
@@ -146,7 +143,7 @@ typedef struct s_game
 	char		*name;
 	t_sett		*sett;
 	int			width;
-	t_sprite	sprite;
+	t_sprite	spt;
 	int			height;
 	int			**textr;
 	int			dr_count;
@@ -253,7 +250,6 @@ int		valid_move_door(t_game *g, int new_x, int new_y);
 //sprite_bonus.c
 void 	draw_sprites(t_game *g, t_sprite *sp);
 void	get_img_sprite(t_game *g, t_sprite *sp);
-void	init_textures_sprinte(t_sprite *sp, t_img *img);
-
+void 	init_textures_sprite(t_sprite *sp, t_img *img);
 
 #endif
