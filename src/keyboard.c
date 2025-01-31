@@ -45,7 +45,7 @@ int	valid_move(t_game *g, int new_x, int new_y)
 int	keypress(int key, t_game *g)
 {
 	if (key == UP)
-		move_up(g); 
+		move_up(g);
 	if (key == DOWN)
 		move_down(g);
 	if (key == LEFT)
