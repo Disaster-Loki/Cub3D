@@ -33,7 +33,7 @@
 # define EPSILON 0.1
 # define SPACE 32
 # define ENTER 65293
-# define RIGHT_MOUSE 2
+# define LEFT_BUTTON_MOUSE 1
 
 typedef struct s_point
 {
@@ -84,7 +84,10 @@ typedef struct s_sett
 
 typedef struct s_sprite
 {
+	int		tex_x;
+	int		tex_y;
 	int		state;
+	int		time;
 	int		width[2];
 	int		frame;
 	int		height[2];
@@ -92,6 +95,12 @@ typedef struct s_sprite
 	int     offset_y;
 	int		**s_textr;
 	void	*sprite[2];
+	char	*texture;
+	float	scale;
+	int		screen_x;
+	int		screen_y;
+	int		new_width;
+	int		new_height;
 }	t_sprite;
 
 typedef struct s_raycast
@@ -99,17 +108,20 @@ typedef struct s_raycast
 	t_point_d	pos;
 	t_point_d	dir;
 	t_point_d	plane;
-	int			tex_x;
-	int			tex_y;
+	double		tex_pos;
+	double		step;
 	int			hit;
 	int			side;
+	long		time;
 	int			map_x;
+	int			tex_y;
+	int			tex_x;
 	int			map_y;
 	int			step_x;
 	int			step_y;
-	long		time;
 	double		wall_x;
 	int			tex_id;
+	int			is_door;
 	long		old_time;
 	int			draw_end;
 	double		camera_x;
@@ -234,11 +246,11 @@ void		rotate_view(t_game *g, t_raycast *ray, double speed);
 // mini_map_bonus.c
 void		mini_map(t_game *g);
 void		draw_square(t_img *img, int x, int y, int color);
-//void		draw_player(t_img *img, int player_x, int player_y);
+void		draw_player(t_img *img, double player_x, double player_y);
 
 // mouse_press_bonus.c
-int mouse_init(int x, int y, t_game *g);
 int mouse_move(int x, int y, t_game *g);
+int	mouse_hook(int button, int x, int y, t_game *g);
 
 // door_bonus.c
 int		found_x(char **map);

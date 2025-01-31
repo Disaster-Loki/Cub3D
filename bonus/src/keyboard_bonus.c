@@ -57,10 +57,10 @@ int	keypress(int key, t_game *g)
 		rotate_view(g, &g->ray, g->ray.rot_speed);
 	if (key == SPACE)
 		open_door(g);
-	if (key == ENTER || key == RIGHT_MOUSE)
+	if (key == ENTER)
 	{
 		g->spt.frame = 1;
-		printf("key = %d\n", key);
+		g->spt.time = 10;
 	}
 	if (key == ESC)
 		close_game(g);

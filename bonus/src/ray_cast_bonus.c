@@ -53,7 +53,6 @@ int	render_window(t_game *g)
 	mini_map(g);
 	draw_sprites(g, &g->spt);
 	mlx_put_image_to_window(g->mlx, g->win, g->img.ptr, 0, 0);
-	if (g->spt.frame == 1)
-		stop_sprite(&g->spt);
+	stop_sprite(&g->spt);
 	return (0);
 }

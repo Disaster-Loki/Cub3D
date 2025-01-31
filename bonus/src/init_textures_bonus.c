@@ -27,6 +27,26 @@ void	get_img(t_game *g, t_img *img)
 	img->height = y;
 }
 
+void	get_img_sprite(t_game *g, t_sprite *sp)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	y = 0;
+	sp->sprite[0] = mlx_xpm_file_to_image(g->mlx, "textures/gun1.xpm", &x, &y);
+	sp->width[0] = x;
+	sp->height[0] = y;
+	sp->sprite[1] = mlx_xpm_file_to_image(g->mlx, "textures/gun2.xpm", &x, &y);
+	sp->width[1] = x;
+	sp->height[1] = y;
+	if (!sp->sprite[0] || !sp->sprite[1])
+	{
+		printf("Erro: Falha ao carregar a textura!\n");
+		exit(1);
+	}
+}
+
 void	init_textures(t_game *g, t_img *img)
 {
 	g->textr = malloc(sizeof(int *) * 4);
@@ -38,4 +58,23 @@ void	init_textures(t_game *g, t_img *img)
 			&img->line_length, &img->endian);
 	g->textr[3] = (int *)mlx_get_data_addr(img->we, &img->bpp,
 			&img->line_length, &img->endian);
+}
+
+void	init_textures_sprite(t_sprite *sp, t_img *img)
+{
+	sp->s_textr = malloc(sizeof(int *) * 2);
+	if (!sp->s_textr)
+	{
+		printf("Error\nFalha ao alocar memória para a textura!\n");
+		exit(1);
+	}
+	sp->s_textr[0] = (int *)mlx_get_data_addr(sp->sprite[0], &img->bpp,
+			&img->line_length, &img->endian);
+	sp->s_textr[1] = (int *)mlx_get_data_addr(sp->sprite[1], &img->bpp,
+			&img->line_length, &img->endian);
+	if (!sp->s_textr[0] || !sp->s_textr[1])
+	{
+		printf("Erro\nFalha ao obter dados da textura!\n");
+		exit(1);
+	}
 }

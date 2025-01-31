@@ -12,12 +12,15 @@
 
 #include "../inc/cub3d_bonus.h"
 
-int	mouse_init(int x, int y, t_game *g)
+int	mouse_hook(int button, int x, int y, t_game *g)
 {
 	(void)x;
 	(void)y;
-	(void)g;
-	printf("x: %d\n", x);
+	if (button == LEFT_BUTTON_MOUSE)
+	{
+		g->spt.frame = 1;
+		g->spt.time = 10;
+	}
 	return (0);
 }
 

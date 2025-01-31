@@ -27,6 +27,7 @@ void	init_vars(t_game *g, t_sett *sett)
 	g->spt.offset_y = 0;
 	get_img(g, &g->img);
 	init_textures(g, &g->img);
+	get_img_sprite(g, &g->spt);
 	g->pos = pos(g->sett->map);
 	g->pos = (t_point_d){g->pos.x + 0.5, g->pos.y + 0.5};
 	g->dr_count = found_x(g->sett->map);
@@ -34,11 +35,9 @@ void	init_vars(t_game *g, t_sett *sett)
 	g->cht = g->sett->map[(int)g->pos.y][(int)g->pos.x];
 	g->height = matrix_len(g->sett->map) * g->img.width + 2;
 	g->width = max_strlen(g->sett->map) * g->img.height + 2;
-	get_img_sprite(g, &g->spt);
 	init_textures_sprite(&g->spt, &g->img);
 }
 
-//mlx_mouse_hook(g.win, mouse_init, &g);
 void	win_init(char **args)
 {
 	t_game	g;
@@ -51,6 +50,7 @@ void	win_init(char **args)
 	create_image(&g, &g.img);
 	mlx_loop_hook(g.mlx, render_window, &g);
 	mlx_hook(g.win, 02, 1L << 0, keypress, &g);
+	mlx_mouse_hook(g.win, mouse_hook, &g);
 	mlx_hook(g.win, 6, 1L << 6, mouse_move, &g);
 	mlx_hook(g.win, 17, 0, close_game, &g);
 	mlx_loop(g.mlx);
