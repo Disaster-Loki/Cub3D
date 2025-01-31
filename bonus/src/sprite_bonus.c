@@ -20,9 +20,21 @@ void	stop_sprite(t_sprite *sp)
 		sp->frame = 0;
 }
 
+double	cal_scales(t_game *g, int index)
+{
+	double	scale_x;
+	double	scale_y;
+	double	scale;
+
+	scale_x = g->width / g->spt.width[index];
+	scale_y = g->height / g->spt.height[index];
+	scale = (fmin(scale_x, scale_y) / 2.4);
+	return (scale);
+}
+
 void	init_vars_sprite(t_game *g, t_sprite *sp, int index)
 {
-	sp->scale = 1.3;
+	sp->scale = cal_scales(g, index);
 	sp->new_width = sp->width[index] * sp->scale;
 	sp->new_height = sp->height[index] * sp->scale + sp->offset_y;
 	sp->screen_x = (g->width - sp->new_width) / 2;

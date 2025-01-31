@@ -57,7 +57,6 @@ S_FILES		= ./src/main.c    				\
 			  ./src/init_textures.c			\
 			  ./src/ray_draw.c				\
 			  ./src/move_player.c			\
-			  ./src/door_utils_bonus.c		\
 
 S_FILES_BONUS	= ./bonus/src/main_bonus.c						\
 			  	  ./bonus/src/close_game_bonus.c  				\
@@ -93,6 +92,7 @@ S_FILES_BONUS	= ./bonus/src/main_bonus.c						\
 			      ./bonus/src/mouse_press_bonus.c				\
 			      ./bonus/src/door_bonus.c						\
 			      ./bonus/src/sprite_bonus.c					\
+				  ./bonus/src/door_utils_bonus.c				\
 
 S_OBJ			= $(S_FILES:.c=.o)
 S_OBJ_BS		= $(S_FILES_BONUS:.c=.o)
