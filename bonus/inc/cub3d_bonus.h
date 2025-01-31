@@ -122,6 +122,7 @@ typedef struct s_raycast
 	double		wall_x;
 	int			tex_id;
 	int			is_door;
+	int			is_door2;
 	long		old_time;
 	int			draw_end;
 	double		camera_x;
@@ -253,10 +254,13 @@ int			mouse_move(int x, int y, t_game *g);
 int			mouse_hook(int button, int x, int y, t_game *g);
 
 // door_bonus.c
-int			found_x(char **map);
 void		open_door(t_game *g);
 void		close_door(t_game *g);
 t_door		*door_coordinates(t_game *g, char **map);
+
+// door_utils_bonus.c
+int			found_x(char **map);
+int			is_in_fov(t_game *g, int door_x, int door_y);
 int			valid_move_door(t_game *g, int new_x, int new_y);
 
 //sprite_bonus.c

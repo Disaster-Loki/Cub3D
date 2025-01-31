@@ -12,49 +12,6 @@
 
 #include "../inc/cub3d_bonus.h"
 
-int	valid_move_door(t_game *g, int new_x, int new_y)
-{
-	if (g->sett->map[(int)g->pos.y][new_x] == 'X')
-	{
-		g->doors.x = new_x;
-		g->doors.y = g->pos.y;
-		return (0);
-	}
-	if (g->sett->map[new_y][(int)g->pos.x] == 'X')
-	{
-		g->doors.x = g->pos.x;
-		g->doors.y = new_y;
-		return (0);
-	}
-	if (g->sett->map[new_y][new_x] == 'X')
-	{
-		g->doors.x = new_x;
-		g->doors.y = new_y;
-		return (0);
-	}
-	return (1);
-}
-
-int	found_x(char **map)
-{
-	int	i;
-	int	j;
-	int	len;
-
-	i = -1;
-	len = 0;
-	while (map[++i])
-	{
-		j = -1;
-		while (map[i][++j])
-		{
-			if (map[i][j] == 'X')
-				++len;
-		}
-	}
-	return (len);
-}
-
 t_door	*door_coordinates(t_game *g, char **map)
 {
 	int		x;
@@ -91,7 +48,9 @@ void	open_door(t_game *g)
 	{
 		if (g->doors.x == g->door[i].new_x
 			&& g->doors.y == g->door[i].new_y
-			&& g->door[i].open == 0)
+			&& g->door[i].open == 0
+			&& is_in_fov(g, g->door[i].new_x, g->door[i].new_y)
+			&& g->ray.is_door2)
 		{
 			g->door[i].open = 1;
 			g->door[i].is_open = current_time();

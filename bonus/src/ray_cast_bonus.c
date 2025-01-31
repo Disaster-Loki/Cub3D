@@ -34,6 +34,7 @@ void	raycasting(t_game *g, t_raycast *ray)
 		init_ray(g, ray, x);
 		set_steps_and_sidedist(ray);
 		ray->hit = 0;
+		ray->is_door2 = 0;
 		while (!ray->hit)
 			check_hit(g, ray);
 		cal_perp_wall_dist(ray);

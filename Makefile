@@ -57,6 +57,7 @@ S_FILES		= ./src/main.c    				\
 			  ./src/init_textures.c			\
 			  ./src/ray_draw.c				\
 			  ./src/move_player.c			\
+			  ./src/door_utils_bonus.c		\
 
 S_FILES_BONUS	= ./bonus/src/main_bonus.c						\
 			  	  ./bonus/src/close_game_bonus.c  				\
