@@ -92,7 +92,7 @@ typedef struct s_sprite
 	int		frame;
 	int		height[2];
 	long	timer;
-	int     offset_y;
+	int		offset_y;
 	int		**s_textr;
 	void	*sprite[2];
 	char	*texture;
@@ -249,20 +249,20 @@ void		draw_square(t_img *img, int x, int y, int color);
 void		draw_player(t_img *img, double player_x, double player_y);
 
 // mouse_press_bonus.c
-int mouse_move(int x, int y, t_game *g);
-int	mouse_hook(int button, int x, int y, t_game *g);
+int			mouse_move(int x, int y, t_game *g);
+int			mouse_hook(int button, int x, int y, t_game *g);
 
 // door_bonus.c
-int		found_x(char **map);
-void	open_door(t_game *g);
-void	close_door(t_game *g);
-t_door  *door_coordinates(t_game *g, char **map);
-int		valid_move_door(t_game *g, int new_x, int new_y);
+int			found_x(char **map);
+void		open_door(t_game *g);
+void		close_door(t_game *g);
+t_door		*door_coordinates(t_game *g, char **map);
+int			valid_move_door(t_game *g, int new_x, int new_y);
 
 //sprite_bonus.c
-void	stop_sprite(t_sprite *sp);
-void 	draw_sprites(t_game *g, t_sprite *sp);
-void	get_img_sprite(t_game *g, t_sprite *sp);
-void 	init_textures_sprite(t_sprite *sp, t_img *img);
+void		stop_sprite(t_sprite *sp);
+void		draw_sprites(t_game *g, t_sprite *sp);
+void		get_img_sprite(t_game *g, t_sprite *sp);
+void		init_textures_sprite(t_sprite *sp, t_img *img);
 
 #endif

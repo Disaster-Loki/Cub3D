@@ -35,11 +35,22 @@ void	close_img(void *mlx, t_img *img)
 		mlx_destroy_image(mlx, img->ptr);
 }
 
+void	close_img_sprite(void *mlx, t_sprite *sp)
+{
+	if (sp->sprite[0])
+		mlx_destroy_image(mlx, sp->sprite[0]);
+	if (sp->sprite[1])
+		mlx_destroy_image(mlx, sp->sprite[1]);
+}
+
 int	close_game(t_game *game)
 {
+	free(game->door);
 	free(game->textr);
+	free(game->spt.s_textr);
 	free_sett(game->sett);
 	close_img(game->mlx, &game->img);
+	close_img_sprite(game->mlx, &game->spt);
 	mlx_clear_window(game->mlx, game->win);
 	mlx_destroy_window(game->mlx, game->win);
 	mlx_destroy_display(game->mlx);
