@@ -28,8 +28,6 @@ void	raycasting(t_game *g, t_raycast *ray)
 
 	x = -1;
 	ray->time = current_time();
-	if (!g->flag)
-		player_dir_plane(ray, g->cht);
 	ray->pos = create_point(g->pos.x, g->pos.y);
 	while (++x < g->width)
 	{

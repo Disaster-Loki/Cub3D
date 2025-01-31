@@ -12,14 +12,13 @@
 
 #include "../inc/cub3d_bonus.h"
 
-void	rotate_view(t_game *g, t_raycast *ray, double speed)
+void	rotate_view(t_raycast *ray, double speed)
 {
 	double	old_dir_x;
 	double	old_plane_x;
 	double	cos_s;
 	double	sin_s;
 
-	g->flag = 0;
 	cos_s = cos(speed);
 	sin_s = sin(speed);
 	old_dir_x = ray->dir.x;
@@ -56,9 +55,9 @@ int	keypress(int key, t_game *g)
 	if (key == RIGHT)
 		move_right(g);
 	if (key == S_RIGHT)
-		rotate_view(g, &g->ray, -g->ray.rot_speed);
+		rotate_view(&g->ray, -g->ray.rot_speed);
 	if (key == S_LEFT)
-		rotate_view(g, &g->ray, g->ray.rot_speed);
+		rotate_view(&g->ray, g->ray.rot_speed);
 	if (key == SPACE)
 		open_door(g);
 	if (key == ENTER)

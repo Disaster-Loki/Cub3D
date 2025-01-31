@@ -32,9 +32,9 @@ int	mouse_move(int x, int y, t_game *g)
 	if (prev_x == 0)
 		prev_x = g->width / 2;
 	if (x > prev_x)
-		rotate_view(g, &g->ray, g->ray.rot_speed);
+		rotate_view(&g->ray, g->ray.rot_speed);
 	else if (x < prev_x)
-		rotate_view(g, &g->ray, -g->ray.rot_speed);
+		rotate_view(&g->ray, -g->ray.rot_speed);
 	prev_x = x;
 	return (0);
 }

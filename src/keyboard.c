@@ -12,14 +12,13 @@
 
 #include "../inc/cub3d.h"
 
-void	rotate_view(t_game *g, t_raycast *ray, double speed)
+void	rotate_view(t_raycast *ray, double speed)
 {
 	double	old_dir_x;
 	double	old_plane_x;
 	double	cos_s;
 	double	sin_s;
 
-	g->flag = 0;
 	cos_s = cos(speed);
 	sin_s = sin(speed);
 	old_dir_x = ray->dir.x;
@@ -28,7 +27,6 @@ void	rotate_view(t_game *g, t_raycast *ray, double speed)
 	old_plane_x = ray->plane.x;
 	ray->plane.x = old_plane_x * cos_s - ray->plane.y * sin_s;
 	ray->plane.y = old_plane_x * sin_s + ray->plane.y * cos_s;
-	render_window(g);
 }
 
 int	valid_move(t_game *g, int new_x, int new_y)
@@ -53,9 +51,9 @@ int	keypress(int key, t_game *g)
 	if (key == RIGHT)
 		move_right(g);
 	if (key == S_RIGHT)
-		rotate_view(g, &g->ray, -g->ray.rot_speed);
+		rotate_view(&g->ray, -g->ray.rot_speed);
 	if (key == S_LEFT)
-		rotate_view(g, &g->ray, g->ray.rot_speed);
+		rotate_view(&g->ray, g->ray.rot_speed);
 	if (key == ESC)
 		close_game(g);
 	return (1);

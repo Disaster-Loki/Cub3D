@@ -199,6 +199,6 @@ void		move_right(t_game *g);
 // keyboard.c
 int			keypress(int key, t_game *game);
 int			valid_move(t_game *g, int new_x, int new_y);
-void		rotate_view(t_game *g, t_raycast *ray, double speed);
+void		rotate_view(t_raycast *ray, double speed);
 
 #endif
