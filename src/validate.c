@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 11:38:09 by ptchipoc          #+#    #+#             */
-/*   Updated: 2025/01/16 11:38:33 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2025/02/01 10:53:33 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,10 @@ int	open_file(char *file)
 	ext = ".cub";
 	len = (int) ft_strlen(file);
 	if (len < 4 || ft_strncmp(file + len - 4, ext, 4) != 0)
-		error("Error - Invalid extension !!\n");
+		error("Error\nInvalid extension\n");
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-		error("Error - Openning the file !!\n");
+		error("Error\nOpenning the file\n");
 	return (fd);
 }
 
