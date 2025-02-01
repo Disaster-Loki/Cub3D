@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_bonus.c                                       :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sde-carv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/06 13:15:49 by sde-carv          #+#    #+#             */
-/*   Updated: 2025/02/01 10:38:03 by ptchipoc         ###   ########.fr       */
+/*   Created: 2025/01/06 13:12:39 by sde-carv          #+#    #+#             */
+/*   Updated: 2025/01/06 13:12:41 by sde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-void	print_matrix(char **mt)
+void	error(char *msg)
 {
-	while (*mt)
-		printf("%s\n", *(mt++));
+	ft_putstr_fd(msg, 1);
+	exit(1);
 }
 
-int	main(int av, char **args)
+void	error_str(char *msg, char *str)
 {
-	char	**cub;
-
-	if (av == 1)
-		error("Error\n./exec_name map_path\n");
-	cub = get_file(args[1]);
-	validate_file(cub, args[1]);
-	free_max(cub);
-	win_init(args);
-	return (0);
+	free(str);
+	ft_putstr_fd(msg, 1);
+	exit(1);
 }

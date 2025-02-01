@@ -75,8 +75,10 @@ typedef struct s_raycast
 	t_point_d	pos;
 	t_point_d	dir;
 	t_point_d	plane;
+	double		tex_pos;
 	int			tex_x;
 	int			tex_y;
+	double		step;
 	int			hit;
 	int			side;
 	int			map_x;

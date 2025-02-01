@@ -28,7 +28,7 @@ void	raycasting(t_game *g, t_raycast *ray)
 
 	x = -1;
 	ray->time = current_time();
-	ray->pos = g->pos;
+	ray->pos = create_point(g->pos.x, g->pos.y);
 	while (++x < g->width)
 	{
 		init_ray(g, ray, x);
@@ -47,7 +47,6 @@ void	raycasting(t_game *g, t_raycast *ray)
 
 int	render_window(t_game *g)
 {
-	clear_window(g);
 	draw_background(g);
 	raycasting(g, &g->ray);
 	return (0);

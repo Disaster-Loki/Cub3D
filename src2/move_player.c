@@ -23,6 +23,7 @@ void	move_up(t_game *g)
 	{
 		g->pos.x = new_x;
 		g->pos.y = new_y;
+		render_window(g);
 	}
 }
 
@@ -37,6 +38,7 @@ void	move_down(t_game *g)
 	{
 		g->pos.x = new_x;
 		g->pos.y = new_y;
+		render_window(g);
 	}
 }
 
@@ -51,6 +53,7 @@ void	move_left(t_game *g)
 	{
 		g->pos.x = new_x;
 		g->pos.y = new_y;
+		render_window(g);
 	}
 }
 
@@ -65,5 +68,6 @@ void	move_right(t_game *g)
 	{
 		g->pos.x = new_x;
 		g->pos.y = new_y;
+		render_window(g);
 	}
 }

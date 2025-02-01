@@ -31,8 +31,6 @@ void	rotate_view(t_raycast *ray, double speed)
 
 int	valid_move(t_game *g, int new_x, int new_y)
 {
-	if (new_x < 0 || new_x >= g->width || new_y < 0 || new_y >= g->height)
-		return (0);
 	if (g->sett->map[(int)g->pos.y][new_x] == '1')
 		return (0);
 	if (g->sett->map[new_y][(int)g->pos.x] == '1')

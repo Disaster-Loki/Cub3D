@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player_in_map_bonus.c                              :+:      :+:    :+:   */
+/*   more_players.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/10 22:02:30 by ptchipoc          #+#    #+#             */
-/*   Updated: 2025/01/31 09:29:53 by ptchipoc         ###   ########.fr       */
+/*   Created: 2025/01/10 22:05:31 by ptchipoc          #+#    #+#             */
+/*   Updated: 2025/01/16 10:58:31 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-void	only_n(char **map, int i, int j, char **max)
+void	more_n(char **map, int i, int j, char **max)
 {
 	while (map[i])
 	{
 		while (map[i][j])
 		{
-			if (map[i][j] == 'S' || map[i][j] == 'W' || map[i][j] == 'E')
+			if (map[i][j] == 'N')
 			{
 				free_max(map);
 				free_max(max);
-				error("Error\nOnly one character for the player\n");
+				error("Error\nMany players\n");
 			}
 			j++;
 		}
@@ -31,17 +31,17 @@ void	only_n(char **map, int i, int j, char **max)
 	}
 }
 
-void	only_s(char **map, int i, int j, char **max)
+void	more_s(char **map, int i, int j, char **max)
 {
 	while (map[i])
 	{
 		while (map[i][j])
 		{
-			if (map[i][j] == 'N' || map[i][j] == 'W' || map[i][j] == 'E')
+			if (map[i][j] == 'S')
 			{
 				free_max(map);
 				free_max(max);
-				error("Error\nOnly one character for the player\n");
+				error("Error\nMany players\n");
 			}
 			j++;
 		}
@@ -50,17 +50,17 @@ void	only_s(char **map, int i, int j, char **max)
 	}
 }
 
-void	only_w(char **map, int i, int j, char **max)
+void	more_w(char **map, int i, int j, char **max)
 {
 	while (map[i])
 	{
 		while (map[i][j])
 		{
-			if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E')
+			if (map[i][j] == 'W')
 			{
 				free_max(map);
 				free_max(max);
-				error("Error\nOnly one character for the player\n");
+				error("Error\nMany players\n");
 			}
 			j++;
 		}
@@ -69,17 +69,17 @@ void	only_w(char **map, int i, int j, char **max)
 	}
 }
 
-void	only_e(char **map, int i, int j, char **max)
+void	more_e(char **map, int i, int j, char **max)
 {
 	while (map[i])
 	{
 		while (map[i][j])
 		{
-			if (map[i][j] == 'N' || map[i][j] == 'W' || map[i][j] == 'S')
+			if (map[i][j] == 'E')
 			{
 				free_max(map);
 				free_max(max);
-				error("Error\nOnly one character for the player\n");
+				error("Error\nMany players\n");
 			}
 			j++;
 		}
@@ -88,7 +88,7 @@ void	only_e(char **map, int i, int j, char **max)
 	}
 }
 
-void	player_in_map(char **map, char **max)
+void	more_players(char **map, char **max)
 {
 	int	i;
 	int	j;
@@ -100,15 +100,16 @@ void	player_in_map(char **map, char **max)
 		while (map[i][j])
 		{
 			if (map[i][j] == 'N')
-				only_n(map, i, j, max);
+				more_n(map, i, j + 1, max);
 			else if (map[i][j] == 'S')
-				only_s(map, i, j, max);
+				more_s(map, i, j + 1, max);
 			else if (map[i][j] == 'W')
-				only_w(map, i, j, max);
+				more_w(map, i, j + 1, max);
 			else if (map[i][j] == 'E')
-				only_e(map, i, j, max);
+				more_e(map, i, j + 1, max);
 			j++;
 		}
 		i++;
 	}
+	free_max(map);
 }

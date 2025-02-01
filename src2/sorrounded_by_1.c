@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sorrounded_by_1_bonus.c                            :+:      :+:    :+:   */
+/*   sorrounded_by_1.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 09:28:04 by ptchipoc          #+#    #+#             */
-/*   Updated: 2025/01/31 09:30:43 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2025/01/16 11:14:26 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,4 +111,5 @@ void	walls_at_edges(char **map, char **max)
 	middle_lines(map, max);
 	last_char(map, max);
 	inside_map(map, max);
+	free_max(map);
 }
