@@ -12,6 +12,23 @@
 
 #include "../inc/cub3d_bonus.h"
 
+void	valid_img(t_game *g)
+{
+	get_img(g, &g->img);
+	get_img_sprite(g, &g->spt);
+	if (!g->img.no || !g->img.so || !g->img.we || !g->img.ea
+		|| !g->spt.sprite[0] || !g->spt.sprite[0])
+	{
+		free_sett(g->sett);
+		close_img(g->mlx, &g->img);
+		mlx_destroy_display(g->mlx);
+		free(g->mlx);
+		error("Error\nFailed to load texture !\n");
+	}
+	init_textures(g, &g->img);
+	init_textures_sprite(&g->spt, &g->img);
+}
+
 void	get_img(t_game *g, t_img *img)
 {
 	int	x;
@@ -42,7 +59,7 @@ void	get_img_sprite(t_game *g, t_sprite *sp)
 	sp->height[1] = y;
 	if (!sp->sprite[0] || !sp->sprite[1])
 	{
-		printf("Erro: Falha ao carregar a textura!\n");
+		printf("Error\nFailed to load texture!\n");
 		exit(1);
 	}
 }

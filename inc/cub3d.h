@@ -163,6 +163,7 @@ void		create_image(t_game *g, t_img *img);
 void		draw_pixel(t_img *img, int x, int y, int color);
 
 // init_textures.c
+void		valid_img(t_game *g);
 void		get_img(t_game *g, t_img *img);
 void		init_textures(t_game *g, t_img *img);
 

@@ -17,6 +17,7 @@ void	init_vars(t_game *g, t_sett *sett)
 {
 	g->sett = sett;
 	g->name = "CUB3D";
+	g->img.ptr = NULL;
 	g->mlx = mlx_init();
 	get_img(g, &g->img);
 	init_textures(g, &g->img);

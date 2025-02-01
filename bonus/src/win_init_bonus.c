@@ -17,17 +17,16 @@ void	init_vars(t_game *g, t_sett *sett)
 {
 	g->flag = 0;
 	g->frame = 0;
-	g->sett = sett;
 	g->doors.x = 0;
 	g->doors.y = 0;
+	g->sett = sett;
 	g->name = "CUB3D";
+	g->img.ptr = NULL;
 	g->mlx = mlx_init();
+	valid_img(g);
 	g->spt.state = 0;
 	g->spt.frame = 0;
 	g->spt.offset_y = 0;
-	get_img(g, &g->img);
-	init_textures(g, &g->img);
-	get_img_sprite(g, &g->spt);
 	g->pos = pos(g->sett->map);
 	g->pos = (t_point_d){g->pos.x + 0.5, g->pos.y + 0.5};
 	g->dr_count = found_x(g->sett->map);
@@ -35,7 +34,6 @@ void	init_vars(t_game *g, t_sett *sett)
 	g->cht = g->sett->map[(int)g->pos.y][(int)g->pos.x];
 	g->height = matrix_len(g->sett->map) * g->img.width + 2;
 	g->width = max_strlen(g->sett->map) * g->img.height + 2;
-	init_textures_sprite(&g->spt, &g->img);
 }
 
 void	win_init(char **args)

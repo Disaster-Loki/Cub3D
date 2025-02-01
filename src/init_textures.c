@@ -25,6 +25,7 @@ void	get_img(t_game *g, t_img *img)
 	img->ea = mlx_xpm_file_to_image(g->mlx, g->sett->ea, &x, &y);
 	img->width = x;
 	img->height = y;
+	valid_img(g);
 }
 
 void	init_textures(t_game *g, t_img *img)
@@ -38,4 +39,16 @@ void	init_textures(t_game *g, t_img *img)
 			&img->line_length, &img->endian);
 	g->textr[3] = (int *)mlx_get_data_addr(img->we, &img->bpp,
 			&img->line_length, &img->endian);
+}
+
+void	valid_img(t_game *g)
+{
+	if (!g->img.no || !g->img.so || !g->img.we || !g->img.ea)
+	{
+		free_sett(g->sett);
+		close_img(g->mlx, &g->img);
+		mlx_destroy_display(g->mlx);
+		free(g->mlx);
+		error("Error\nFailed to load texture!\n");
+	}
 }
