@@ -22,7 +22,7 @@ int	main(int av, char **args)
 {
 	char	**cub;
 
-	if (av == 1)
+	if (av != 2)
 		error("Error\n./exec_name map_path\n");
 	cub = get_file(args[1]);
 	validate_file(cub, args[1]);

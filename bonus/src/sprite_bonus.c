@@ -28,7 +28,7 @@ double	cal_scales(t_game *g, int index)
 
 	scale_x = g->width / g->spt.width[index];
 	scale_y = g->height / g->spt.height[index];
-	scale = (fmin(scale_x, scale_y) / 2.4);
+	scale = (fmin(scale_x, scale_y) / g->scale);
 	return (scale);
 }
 

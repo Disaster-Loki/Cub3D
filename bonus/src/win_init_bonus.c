@@ -18,6 +18,7 @@ void	init_vars(t_game *g, t_sett *sett)
 {
 	g->flag = 0;
 	g->frame = 0;
+	g->scale = 2.5;
 	g->doors.x = 0;
 	g->doors.y = 0;
 	g->sett = sett;

@@ -161,6 +161,7 @@ typedef struct s_game
 	int			**textr;
 	int			dr_count;
 	int			frame;
+	double		scale;
 }	t_game;
 
 // close_game.c
