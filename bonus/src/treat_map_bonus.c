@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   treat_map.c                                        :+:      :+:    :+:   */
+/*   treat_map_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 21:50:19 by ptchipoc          #+#    #+#             */
-/*   Updated: 2025/01/25 05:47:04 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2025/01/31 09:52:59 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,18 @@ void	empty_line(char *str, char **max)
 
 void	validate_map(char *str, char **max)
 {
+	char	**map;
+
+	map = get_map(max);
 	empty_line(str, max);
-	forbiden_char(get_map(max), max);
-	player_in_map(get_map(max), max);
-	more_players(get_map(max), max);
-	has_player(get_map(max), max);
-	walls_at_edges(get_map(max), max);
+	forbiden_char(map, max);
+	player_in_map(map, max);
+	treat_door(map, max);
+	more_players(map, max);
+	has_player(map, max);
+	walls_at_edges(map, max);
+	verify_door_path(map, max);
+	free_max(map);
 }
 
 void	treat_map(char **max, char *str)

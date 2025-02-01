@@ -1,17 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   file.h                                             :+:      :+:    :+:   */
+/*   file_bonus.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 11:57:16 by sde-carv          #+#    #+#             */
-/*   Updated: 2025/01/25 10:28:35 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2025/01/31 09:49:24 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FILE_BONUS_H
 # define FILE_BONUS_H
+
+typedef struct s_size
+{
+	int	y;
+	int	x;
+}	t_size;
+
+typedef struct s_cur
+{
+	int	y;
+	int	x;
+}	t_cur;
 
 // many_textures.c
 void	west(char **max);
@@ -56,6 +68,10 @@ void	validate_file(char **max, char *str);
 // forbiden_char.c
 void	has_player(char **map, char **max);
 void	forbiden_char(char **map, char **max);
+void	treat_door(char **map, char **max);
+
+// flood_fill.c
+void	flood_fill(char **tab, t_size size, t_cur cur);
 
 // help_sorround_by_1.c
 void	last_line(char **mat, char **max);
@@ -95,5 +111,12 @@ void	last_char(char **map, char **max);
 void	inside_map(char **map, char **max);
 void	walls_at_edges(char **map, char **max);
 void	char_by_char(char **map2, char **map, char **max);
+
+// validate_door_bonus.c
+void	verify_door_path(char **map, char **max);
+int		character2(char c);
+int		bigger_line2(char **map);
+int		has_door(char **map);
+t_cur	found_player(char **map);
 
 #endif

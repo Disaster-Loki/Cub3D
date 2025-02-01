@@ -18,7 +18,6 @@ void	print_matrix(char **mt)
 		printf("%s\n", *(mt++));
 }
 
-//validate_file(cub, args[1]);
 int	main(int av, char **args)
 {
 	char	**cub;
@@ -26,6 +25,7 @@ int	main(int av, char **args)
 	if (av == 1)
 		return (1);
 	cub = get_file(args[1]);
+	validate_file(cub, args[1]);
 	free_max(cub);
 	win_init(args);
 	return (0);

@@ -93,6 +93,8 @@ S_FILES_BONUS	= ./bonus/src/main_bonus.c						\
 			      ./bonus/src/door_bonus.c						\
 			      ./bonus/src/sprite_bonus.c					\
 				  ./bonus/src/door_utils_bonus.c				\
+				  ./bonus/src/flood_fill.c						\
+			      ./bonus/src/validate_door_bonus.c				\
 
 S_OBJ			= $(S_FILES:.c=.o)
 S_OBJ_BS		= $(S_FILES_BONUS:.c=.o)
