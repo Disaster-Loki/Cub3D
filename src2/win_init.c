@@ -24,7 +24,6 @@ void	init_vars(t_game *g, t_sett *sett)
 	get_img(g, &g->img);
 	init_textures(g, &g->img);
 	g->pos = pos(g->sett->map);
-	
 	g->cht = g->sett->map[(int)g->pos.y][(int)g->pos.x];
 	mlx_get_screen_size(g->mlx, &g->width, &g->height);
 }
