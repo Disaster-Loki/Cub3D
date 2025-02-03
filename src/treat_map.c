@@ -44,15 +44,18 @@ void	empty_line(char *str, char **max)
 void	validate_map(char *str, char **max)
 {
 	char	**map;
+	char	**new_map;
 
 	map = get_map(max);
-	empty_line(str, max);
-	forbiden_char(map, max);
-	player_in_map(map, max);
-	more_players(map, max);
-	has_player(map, max);
-	walls_at_edges(map, max);
+	new_map = change_tabs_by_space(map);
 	free_max(map);
+	empty_line(str, max);
+	forbiden_char(new_map, max);
+	player_in_map(new_map, max);
+	more_players(new_map, max);
+	has_player(new_map, max);
+	walls_at_edges(new_map, max);
+	free_max(new_map);
 }
 
 void	treat_map(char **max, char *str)

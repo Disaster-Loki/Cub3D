@@ -27,36 +27,37 @@ YELLOW		= \033[33m
 ORANGE		= \033[38;5;208m
 GREEN		= \033[32m
 
-S_FILES		= ./src/main.c    				\
-			  ./src/close_game.c  			\
-			  ./src/error.c  				\
-			  ./src/utils.c  				\
-			  ./src/draw_window.c  			\
-			  ./src/get_file.c  			\
-			  ./src/win_init.c  			\
-			  ./src/parsing.c  				\
-			  ./src/keyboard.c  			\
-			  ./src/ray_cast.c  			\
-			  ./src/ray_dda.c  				\
-			  ./src/ray_vars.c  			\
-			  ./src/pos.c  					\
-			  ./src/r_utils.c  				\
-			  ./src/validate.c  			\
-			  ./src/treat_map.c				\
-			  ./src/forbiden_char.c			\
-			  ./src/player_in_map.c			\
-			  ./src/more_players.c			\
-			  ./src/sorrounded_by_1.c		\
-			  ./src/help_sorround_by_1.c 	\
-			  ./src/many_textures.c			\
-			  ./src/good_textures.c			\
-			  ./src/textures_path.c			\
-			  ./src/textures_extencion.c	\
-			  ./src/many_colors.c			\
-			  ./src/floor_roof.c			\
-			  ./src/init_textures.c			\
-			  ./src/ray_draw.c				\
-			  ./src/move_player.c			\
+S_FILES		= ./src/main.c    						\
+			  ./src/close_game.c		  			\
+			  ./src/error.c  						\
+			  ./src/utils.c  						\
+			  ./src/draw_window.c  					\
+			  ./src/get_file.c  					\
+			  ./src/win_init.c  					\
+			  ./src/parsing.c  						\
+			  ./src/keyboard.c  					\
+			  ./src/ray_cast.c  					\
+			  ./src/ray_dda.c  						\
+			  ./src/ray_vars.c  					\
+			  ./src/pos.c  							\
+			  ./src/r_utils.c  						\
+			  ./src/validate.c  					\
+			  ./src/treat_map.c						\
+			  ./src/forbiden_char.c					\
+			  ./src/player_in_map.c					\
+			  ./src/more_players.c					\
+			  ./src/sorrounded_by_1.c				\
+			  ./src/help_sorround_by_1.c 			\
+			  ./src/many_textures.c					\
+			  ./src/good_textures.c					\
+			  ./src/textures_path.c					\
+			  ./src/textures_extencion.c			\
+			  ./src/many_colors.c					\
+			  ./src/floor_roof.c					\
+			  ./src/init_textures.c					\
+			  ./src/ray_draw.c						\
+			  ./src/move_player.c					\
+			  ./src/changetabsbyspace.c				\
 
 S_FILES_BONUS	= ./bonus/src/main_bonus.c						\
 			  	  ./bonus/src/close_game_bonus.c  				\
@@ -95,6 +96,7 @@ S_FILES_BONUS	= ./bonus/src/main_bonus.c						\
 				  ./bonus/src/door_utils_bonus.c				\
 				  ./bonus/src/flood_fill.c						\
 			      ./bonus/src/validate_door_bonus.c				\
+			      ./bonus/src/changetabsbyspace_bonus.c			\
 
 S_OBJ			= $(S_FILES:.c=.o)
 S_OBJ_BS		= $(S_FILES_BONUS:.c=.o)

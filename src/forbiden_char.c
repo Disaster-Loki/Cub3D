@@ -53,7 +53,7 @@ void	forbiden_char(char **map, char **max)
 				&& map[i][j] != 'N' && map[i][j] != 'S'
 				&& map[i][j] != 'W' && map[i][j] != 'E'
 				&& map[i][j] != '1' && map[i][j] != '0'
-				&& map[i][j] != '\n' && map[i][j] != 'X')
+				&& map[i][j] != '\n')
 			{
 				free_max(map);
 				free_max(max);

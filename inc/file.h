@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 11:57:16 by sde-carv          #+#    #+#             */
-/*   Updated: 2025/01/25 10:28:35 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2025/02/03 13:12:47 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,10 @@ void	last_char(char **map, char **max);
 void	inside_map(char **map, char **max);
 void	walls_at_edges(char **map, char **max);
 void	char_by_char(char **map2, char **map, char **max);
+
+// changetabsbyspace.c
+char	**change_tabs_by_space(char **map);
+char	*dup_with_tab(char *str);
+void	help_dup_with_tab(char *str, char *res);
 
 #endif

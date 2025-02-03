@@ -35,6 +35,17 @@ char	*read_file(int fd)
 	return (content);
 }
 
+void	last_position(char *str)
+{
+	size_t	i;
+
+	i = ft_strlen(str);
+	if (str[i] == '\0' && str[i - 1] == '\n')
+	{
+		error_str("Error\nThere is empty line\n", str);
+	}
+}
+
 char	**get_file(char *str)
 {
 	int		fd;
@@ -43,6 +54,7 @@ char	**get_file(char *str)
 
 	fd = open_file(str);
 	content = read_file(fd);
+	last_position(content);
 	close(fd);
 	max = ft_split(content, '\n');
 	free(content);
