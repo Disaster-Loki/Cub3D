@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 09:28:04 by ptchipoc          #+#    #+#             */
-/*   Updated: 2025/01/31 09:30:43 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2025/02/03 15:27:11 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	inside_map(char **map, char **max)
 		while (map[i][j])
 		{
 			if (map[i][j] == '0' && ((map[i - 1][j] == ' '
-				|| map[i + 1][j] == '\0')
+				|| map[i + 1][j] == ' ')
 				|| (map[i - 1][j] == '\0'
 				|| map[i + 1][j] == '\0')))
 			{
@@ -107,6 +107,7 @@ void	inside_map(char **map, char **max)
 
 void	walls_at_edges(char **map, char **max)
 {
+	first_position(map, max);
 	last_line(map, max);
 	middle_lines(map, max);
 	last_char(map, max);

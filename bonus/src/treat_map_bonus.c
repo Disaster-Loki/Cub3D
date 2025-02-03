@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 21:50:19 by ptchipoc          #+#    #+#             */
-/*   Updated: 2025/01/31 09:52:59 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2025/02/03 15:35:48 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	validate_map(char *str, char **max)
 	empty_line(str, max);
 	map = get_map(max);
 	new_map = change_tabs_by_space(map);
+	free_max(map);
 	forbiden_char(new_map, max);
 	player_in_map(new_map, max);
 	treat_door(new_map, max);
@@ -57,8 +58,7 @@ void	validate_map(char *str, char **max)
 	walls_at_edges(new_map, max);
 	verify_door_path(new_map, max);
 	free_max(new_map);
-	neighbor_door(map, max);
-	free_max(map);
+	neighbor_door(get_map(max), max);
 }
 
 void	treat_map(char **max, char *str)

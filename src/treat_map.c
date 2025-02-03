@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   treat_map_bonus.c                                  :+:      :+:    :+:   */
+/*   treat_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 21:50:19 by ptchipoc          #+#    #+#             */
-/*   Updated: 2025/01/31 09:52:59 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2025/02/03 15:22:13 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ void	validate_map(char *str, char **max)
 	char	**map;
 	char	**new_map;
 
+	empty_line(str, max);
 	map = get_map(max);
 	new_map = change_tabs_by_space(map);
 	free_max(map);
-	empty_line(str, max);
 	forbiden_char(new_map, max);
 	player_in_map(new_map, max);
 	more_players(new_map, max);
@@ -75,7 +75,7 @@ void	treat_map(char **max, char *str)
 		if (max[i][j] != ' ' && max[i][j] != '\t' && max[i][j] != '1')
 		{
 			free_max(max);
-			error("Error\nThe map should be sorrounded by walls\n");
+			error("Error\nThe map should be sorrounded by 1\n");
 		}
 		j++;
 	}

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sde-carv <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/20 09:48:32 by sde-carv          #+#    #+#              #
-#    Updated: 2024/08/20 09:48:34 by sde-carv         ###   ########.fr        #
+#    Updated: 2025/02/03 14:36:13 by ptchipoc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -97,6 +97,7 @@ S_FILES_BONUS	= ./bonus/src/main_bonus.c						\
 				  ./bonus/src/flood_fill.c						\
 			      ./bonus/src/validate_door_bonus.c				\
 			      ./bonus/src/changetabsbyspace_bonus.c			\
+			      ./bonus/src/neighbor_door.c			\
 
 S_OBJ			= $(S_FILES:.c=.o)
 S_OBJ_BS		= $(S_FILES_BONUS:.c=.o)

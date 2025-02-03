@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sorrounded_by_1_bonus.c                            :+:      :+:    :+:   */
+/*   sorrounded_by_1.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 09:28:04 by ptchipoc          #+#    #+#             */
-/*   Updated: 2025/01/31 09:30:43 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2025/02/03 15:24:07 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	last_char(char **map, char **max)
 			free(str);
 			free_max(map);
 			free_max(max);
-			error("Error\nThe map should be sorrorunded by 1!\n");
+			error("Error\nThe map should be sorrorunded by 1\n");
 		}
 		free(str);
 		i++;
@@ -70,7 +70,7 @@ void	char_by_char(char **map2, char **map, char **max)
 				free_max(map2);
 				free_max(map);
 				free_max(max);
-				error("Error\nThe map should be sorrounded by 1!!\n");
+				error("Error\nThe map should be sorrounded by 1@\n");
 			}
 			j++;
 		}
@@ -91,13 +91,13 @@ void	inside_map(char **map, char **max)
 		while (map[i][j])
 		{
 			if (map[i][j] == '0' && ((map[i - 1][j] == ' '
-				|| map[i + 1][j] == '\0')
+				|| map[i + 1][j] == ' ')
 				|| (map[i - 1][j] == '\0'
 				|| map[i + 1][j] == '\0')))
 			{
 				free_max(map);
 				free_max(max);
-				error("Error\nThe map should be sorrounded by 1!!\n");
+				error("Error\nThe map should be sorrounded by 1\n");
 			}
 			j++;
 		}
@@ -107,6 +107,7 @@ void	inside_map(char **map, char **max)
 
 void	walls_at_edges(char **map, char **max)
 {
+	first_position(map, max);
 	last_line(map, max);
 	middle_lines(map, max);
 	last_char(map, max);

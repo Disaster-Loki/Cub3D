@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 11:57:16 by sde-carv          #+#    #+#             */
-/*   Updated: 2025/02/03 13:02:55 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2025/02/03 15:26:06 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void	flood_fill(char **tab, t_size size, t_cur cur);
 // help_sorround_by_1.c
 void	last_line(char **mat, char **max);
 void	middle_lines(char **map, char **max);
+void	first_position(char **map, char **max);
 
 // treat_map.c.c
 void	treat_map(char **max, char *str);

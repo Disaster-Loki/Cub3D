@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   help_sorround_by_1.c                               :+:      :+:    :+:   */
+/*   help_sorround_by_1_bonus.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 11:21:22 by ptchipoc          #+#    #+#             */
-/*   Updated: 2025/01/16 11:21:25 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2025/02/03 16:03:56 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,22 @@ void	middle_lines(char **map, char **max)
 				error("Error\nThe map should be sorrounded by 1\n");
 			}
 			j++;
+		}
+	}
+}
+
+void	first_position(char **map, char **max)
+{
+	int	i;
+
+	i = 0;
+	while (map[++i])
+	{
+		if (map[i][0] == '0')
+		{
+			free_max(map);
+			free_max(max);
+			error("Error\nThe map should be sorrounded by 1\n");
 		}
 	}
 }
