@@ -31,7 +31,6 @@ int	mouse_move(int x, int y, t_game *g)
 	(void)y;
 	if (prev_x == 0)
 		prev_x = g->width / 2;
-	printf("rot_speed = %f\n", g->ray.rot_speed);
 	if (x > prev_x)
 		rotate_view(&g->ray, 0.02);
 	else if (x < prev_x)
