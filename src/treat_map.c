@@ -6,11 +6,31 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 21:50:19 by ptchipoc          #+#    #+#             */
-/*   Updated: 2025/02/03 15:22:13 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2025/02/05 12:54:39 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
+
+void	only_space(char **map, char **max)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (map[++i])
+	{
+		j = 0;
+		while (map[i][j] && map[i][j] == ' ')
+			j++;
+		if (map[i][j] == '\0')
+		{
+			free_max(map);
+			free_max(max);
+			error("Error\nThe map should be sorrounded by 1\n");
+		}
+	}
+}
 
 void	empty_line(char *str, char **max)
 {

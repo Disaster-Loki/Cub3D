@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 11:57:16 by sde-carv          #+#    #+#             */
-/*   Updated: 2025/02/03 15:26:06 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2025/02/05 14:15:51 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	extencion_no(char *str, char **max);
 // Validate
 int		open_file(char *file);
 void	validate_file(char **max, char *str);
+void	floor_roof(char **max);
 
 // forbiden_char.c
 void	has_player(char **map, char **max);
@@ -84,6 +85,7 @@ void	map_new_line(char *str, char **max);
 void	validate_map(char *str, char **max);
 void	get_map_to_validate(char *file, int i);
 void	help_new_line(char *file, int i, char **max);
+void	only_space(char **map, char **max);
 
 // player_in_map.c
 void	player_in_map(char **map, char **max);
@@ -100,11 +102,14 @@ void	more_w(char **map, int i, int j, char **max);
 void	more_e(char **map, int i, int j, char **max);
 
 // floor_roof.c
-void	floor_roof(char **max);
 char	**split_color(char *str);
 void	big_nbr_color(char *floor, char *roof);
+void	many_colon(char *floor, char *roof, char **max);
+void	big_roof_nbr(char *floor, char *roof, char **max);
+void	big_floor_nbr(char *floor, char *roof, char **max);
 void	floor_roof_one_space(char *floor, char *roof);
-void	floor_roof_weird_char(char *floor, char *roof, char **max);
+void	floor_weird_char(char *fl, char *rf, char **max);
+void	roof_weird_char(char *fl, char *rf, char **max);
 
 // sorrounded_by_1.c
 int		bigger_line(char **mat);

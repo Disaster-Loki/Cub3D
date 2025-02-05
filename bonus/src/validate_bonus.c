@@ -6,11 +6,27 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 11:38:09 by ptchipoc          #+#    #+#             */
-/*   Updated: 2025/02/01 10:54:39 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2025/02/05 14:14:52 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d_bonus.h"
+
+void	floor_roof(char **max)
+{
+	char	*floor;
+	char	*roof;
+
+	floor = get_value(max, "F");
+	roof = get_value(max, "C");
+	roof_weird_char(floor, roof, max);
+	floor_weird_char(floor, roof, max);
+	many_colon(floor, roof, max);
+	big_floor_nbr(floor, roof, max);
+	big_roof_nbr(floor, roof, max);
+	free(floor);
+	free(roof);
+}
 
 void	validate_elements(char **max)
 {

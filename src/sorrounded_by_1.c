@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 09:28:04 by ptchipoc          #+#    #+#             */
-/*   Updated: 2025/02/03 15:24:07 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2025/02/05 14:57:39 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,8 @@ void	char_by_char(char **map2, char **map, char **max)
 
 void	inside_map(char **map, char **max)
 {
-	int	i;
-	int	j;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
 	while (map[i])
@@ -90,9 +90,12 @@ void	inside_map(char **map, char **max)
 		j = 0;
 		while (map[i][j])
 		{
-			if (map[i][j] == '0' && ((map[i - 1][j] == ' '
-				|| map[i + 1][j] == ' ')
-				|| (map[i - 1][j] == '\0'
+			if ((map[i][j] == '0' || character(map[i][j]))
+				&& ((((ft_strlen(map[i - 1]) < i)
+				|| (map[i - 1][j] == ' '))
+				|| ((ft_strlen(map[i + 1]) < i)
+				|| (map[i + 1][j] == ' ')))
+				|| ((map[i - 1][j] == '\0')
 				|| map[i + 1][j] == '\0')))
 			{
 				free_max(map);
@@ -107,6 +110,7 @@ void	inside_map(char **map, char **max)
 
 void	walls_at_edges(char **map, char **max)
 {
+	only_space(map, max);
 	first_position(map, max);
 	last_line(map, max);
 	middle_lines(map, max);

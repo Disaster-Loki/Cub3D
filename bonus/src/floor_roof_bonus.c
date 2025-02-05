@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   floor_roof.c                                       :+:      :+:    :+:   */
+/*   floor_roof_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 22:33:35 by ptchipoc          #+#    #+#             */
-/*   Updated: 2025/01/25 10:34:31 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2025/02/05 14:13:46 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,26 @@ void	many_colon(char *floor, char *roof, char **max)
 	}
 }
 
-void	floor_roof_weird_char(char *fl, char *rf, char **max)
+void	roof_weird_char(char *fl, char *rf, char **max)
+{
+	int	i;
+
+	i = 0;
+	while (rf[++i])
+	{
+		if (rf[i] == ',' || rf[i] == ' ' || ft_isdigit(rf[i]) || rf[i] == '-')
+			continue ;
+		else
+		{
+			free(fl);
+			free(rf);
+			free_max(max);
+			error("Error\nInvalid element in roof\n");
+		}
+	}
+}
+
+void	floor_weird_char(char *fl, char *rf, char **max)
 {
 	int	i;
 
@@ -102,34 +121,10 @@ void	floor_roof_weird_char(char *fl, char *rf, char **max)
 			continue ;
 		else
 		{
+			free(fl);
+			free(rf);
 			free_max(max);
-			error("Error\nInvalid char in floor\n");
+			error("Error\nInvalid element in floor\n");
 		}
 	}
-	i = 0;
-	while (rf[++i])
-	{
-		if (rf[i] == ',' || rf[i] == ' ' || ft_isdigit(rf[i]) || rf[i] == '-')
-			continue ;
-		else
-		{
-			free_max(max);
-			error("Error\nInvalid char in roof\n");
-		}
-	}
-}
-
-void	floor_roof(char **max)
-{
-	char	*floor;
-	char	*roof;
-
-	floor = get_value(max, "F");
-	roof = get_value(max, "C");
-	floor_roof_weird_char(floor, roof, max);
-	many_colon(floor, roof, max);
-	big_floor_nbr(floor, roof, max);
-	big_roof_nbr(floor, roof, max);
-	free(floor);
-	free(roof);
 }

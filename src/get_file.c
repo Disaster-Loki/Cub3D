@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_map.c                                          :+:      :+:    :+:   */
+/*   get_file.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-carv <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 10:30:25 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/08/27 08:59:29 by sde-carv         ###   ########.fr       */
+/*   Updated: 2025/02/05 17:03:28 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ char	*read_file(int fd)
 	offset = 0;
 	content = malloc(sizeof(char) * 70000);
 	if (!content)
-		error("Error - Memory allocation failed !!\n");
+		error("Error\nMemory allocation failed\n");
 	size = read(fd, content, 1024);
 	if (size == 0)
-		error_str("Error - File empty !!\n", content);
+		error_str("Error\nFile empty\n", content);
 	while (size > 0)
 	{
 		offset += size;
